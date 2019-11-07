@@ -197,7 +197,7 @@ static void on_display(){
 		glRotatef(-90, 0, 1, 0);
 		gluCylinder(quad, .45, .45, 3.5, 40, 40);
 	glPopMatrix();
-
+//
 
 
 	glutSwapBuffers();
