@@ -35,6 +35,6 @@
 /.idea
 
 # Build directories
-/build
+/buildAA
 /cmake-build-*
 #
