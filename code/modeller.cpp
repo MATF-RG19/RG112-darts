@@ -1,79 +1,64 @@
+#include "modeller.h"
 #include <iostream>
 #include "GL/glut.h"
+#include <cstdlib>
 
-
-//defines for colors used in gl_material_color function
-#define BLACK 0
-#define WHITE 1
-#define RED 2
-#define GREEN 3
-#define BLUE 4
-#define YELLOW 5
-#define ORANGE 6
-#define BROWN 7
-#define PINK 8
-#define TEAL 9
-#define MAROON 10
-#define GOLD 11
-
-//initialization of vectors for diffuse and ambient material coloring
-GLfloat ambient[] = {1, 1, 1, 1};
-GLfloat diffuse[] = {1, 1, 1, 1};
-//initializing quad for cylinder
-GLUquadric *quad = gluNewQuadric();
-
-//draws cartesian coordinate system
-void draw_cartesian();
-//draws one wing for the dart
-void draw_wing();
-//drawsa all 4 wings of a dart
-void draw_wings();
-//draws base of the dart w/out wings
-void draw_dart_base();
-//sets the color of the particular primitive
-void gl_material_color(int COLOUR);
 
 void gl_material_color(int COLOUR){
 	
+	if(random_colour){
+		COLOUR = rand() % 14;
+	}
+	
+	if(pump_my_bitch_up){
+		COLOUR = GOLD;
+	}
+	
 	switch(COLOUR){
-		case WHITE: ambient[0] = 1, ambient[1] = 1, ambient[2] = 1;
+		case WHITE: ambient[0] = .9, ambient[1] = .9, ambient[2] = .9;
 			diffuse[0] = 1, diffuse[1] = 1, diffuse[2] = 1;
 			break;
 		case BLACK: ambient[0] = 0, ambient[1] = 0, ambient[2] = 0;
 			diffuse[0] = 0, diffuse[1] = 0, diffuse[2] = 0;
 			break;
-		case RED: ambient[0] = 1, ambient[1] = 0, ambient[2] = 0;
+		case RED: ambient[0] = .8, ambient[1] = 0, ambient[2] = 0;
 			diffuse[0] = 1, diffuse[1] = 0, diffuse[2] = 0;
 			break;
-		case GREEN: ambient[0] = 0, ambient[1] = 1, ambient[2] = 0;
+		case GREEN: ambient[0] = 0, ambient[1] = .8, ambient[2] = 0;
 			diffuse[0] = 0, diffuse[1] = 1, diffuse[2] = 0;
 			break;
-		case BLUE: ambient[0] = 0, ambient[1] = 0, ambient[2] = 1;
+		case BLUE: ambient[0] = 0, ambient[1] = 0, ambient[2] = .8;
 			diffuse[0] = 0, diffuse[1] = 0, diffuse[2] = 1;
 			break;
-		case PINK: ambient[0] = 1, ambient[1] = .4, ambient[2] = .7;
+		case PINK: ambient[0] = .9, ambient[1] = .3, ambient[2] = .6;
 			diffuse[0] = 1, diffuse[1] = .4, diffuse[2] = .7;
 			break;
-		case BROWN: ambient[0] = .5, ambient[1] = .3, ambient[2] = .07;
+		case BROWN: ambient[0] = .4, ambient[1] = .2, ambient[2] = .03;
 			diffuse[0] = .5, diffuse[1] = .3, diffuse[2] = .07;
 			break;
-		case TEAL: ambient[0] = 0, ambient[1] = 0, ambient[2] = 0;
-			diffuse[0] = 0, diffuse[1] = 0, diffuse[2] = 0;
+		case TEAL: ambient[0] = 0, ambient[1] = .4, ambient[2] = .4;
+			diffuse[0] = 0, diffuse[1] = .5, diffuse[2] = .5;
 			break;
-		case ORANGE: ambient[0] = 1, ambient[1] = .27, ambient[2] = 0;
+		case ORANGE: ambient[0] = .9, ambient[1] = .22, ambient[2] = 0;
 			diffuse[0] = 1, diffuse[1] = .27, diffuse[2] = 0;
 			break;
-		case MAROON: ambient[0] = .6, ambient[1] = 0, ambient[2] = 0;
+		case MAROON: ambient[0] = .5, ambient[1] = 0, ambient[2] = 0;
 			diffuse[0] = .6, diffuse[1] = 0, diffuse[2] = 0;
 			break;
-		case GOLD: ambient[0] = 1, ambient[1] = 1, ambient[2] = 0;
+		case GOLD: ambient[0] = .8, ambient[1] = .8, ambient[2] = 0;
 			diffuse[0] = .9, diffuse[1] = .9, diffuse[2] = 0;
 			break;
-		case YELLOW: ambient[0] = 1, ambient[1] = 1, ambient[2] = 0;
+		case YELLOW: ambient[0] = .9, ambient[1] = .9, ambient[2] = 0;
 			diffuse[0] = 1, diffuse[1] = 1, diffuse[2] = 0;
 			break;
-		default:	ambient[0] = 1, ambient[1] = 1, ambient[2] = 1;
-			diffuse[0] = 1, diffuse[1] = 1, diffuse[2] = 1;
+		case VIOLET: ambient[0] = .3, ambient[1] = 0, ambient[2] = .3;
+			diffuse[0] = .4, diffuse[1] = 0, diffuse[2] = .4;
+			break;
+		case GREY: ambient[0] = .3, ambient[1] = .3, ambient[2] = .3;
+			diffuse[0] = .4, diffuse[1] = .4, diffuse[2] = .4;
+			break;
+		default:	ambient[0] = .7, ambient[1] = .7, ambient[2] = .7;
+			diffuse[0] = .7, diffuse[1] = .7, diffuse[2] = .7;
 			break;
 	}
 	
@@ -84,7 +69,7 @@ void gl_material_color(int COLOUR){
 }
 
 void draw_dart_base(){
-	
+
 	//middle cylinder
 	glPushMatrix();
 	gl_material_color(WHITE);
@@ -94,15 +79,15 @@ void draw_dart_base(){
 	
 	//right cylinder with different bases
 	glPushMatrix();
-	gl_material_color(RED);
+	gl_material_color(TEAL);
 	glTranslated(4, 0, 0);
 	glRotatef(90, 0, 1, 0);
 	gluCylinder(quad, 1, .6, 3, 40, 40);
 	glPopMatrix();
 	
-	//right cylinder with different bases
+	//left cylinder with different bases
 	glPushMatrix();
-	gl_material_color(ORANGE);
+	gl_material_color(TEAL);
 	glTranslated(0, 0, 0);
 	glRotatef(-90, 0, 1, 0);
 	gluCylinder(quad, 1, .6, 3, 40, 40);
@@ -110,15 +95,15 @@ void draw_dart_base(){
 	
 	//longest cylinder
 	glPushMatrix();
-	gl_material_color(GREEN);
+	gl_material_color(WHITE);
 	glTranslated(-8, 0, 0);
 	glRotatef(90, 0, 1, 0);
 	gluCylinder(quad, .6, .6, 5, 40, 40);
 	glPopMatrix();
 	
-	//beffore arrow cylinder
+	//before arrow cylinder
 	glPushMatrix();
-	gl_material_color(BLACK);
+	gl_material_color(WHITE);
 	glTranslated(7, 0, 0);
 	glRotatef(90, 0, 1, 0);
 	gluCylinder(quad, .6, .3, 0.8, 40, 40);
@@ -126,7 +111,7 @@ void draw_dart_base(){
 	
 	//arrow
 	glPushMatrix();
-	gl_material_color(GOLD);
+	gl_material_color(GREY);
 	glTranslated(7.8, 0, 0);
 	glRotatef(90, 0, 1, 0);
 	glutSolidCone(.3, 10, 30, 0);
@@ -134,7 +119,7 @@ void draw_dart_base(){
 	
 	//before wings holder
 	glPushMatrix();
-	gl_material_color(WHITE);
+	gl_material_color(TEAL);
 	glTranslated(-8, 0, 0);
 	glRotatef(-90, 0, 1, 0);
 	gluCylinder(quad, .6, .45, 0.8, 40, 40);
@@ -142,7 +127,7 @@ void draw_dart_base(){
 	
 	//wings holder
 	glPushMatrix();
-	gl_material_color(RED);
+	gl_material_color(WHITE);
 	glTranslated(-8.8, 0, 0);
 	glRotatef(-90, 0, 1, 0);
 	gluCylinder(quad, .45, .45, 3.5, 40, 40);
@@ -153,10 +138,10 @@ void draw_wing(){
 	
 	//shear
 	GLfloat m[16] = {
-			1.0f, 0.0f, 0.0f, 0.0f,
-			-1, 1.0f, 0.0f, 0.0f,
-			0.0f, 0.0f, 1.0f, 0.0f,
-			0.0f, 0.0f, 0.0f, 1.0f
+			1.0, 0.0, 0.0, 0.0,
+			-1, 1.0, 0.0, 0.0,
+			0.0, 0.0, 1.0, 0.0,
+			0.0, 0.0, 0.0, 1.0
 	};
 	glMultMatrixf(m);
 	
@@ -208,28 +193,28 @@ void draw_wings(){
 	
 	glPushMatrix();
 	glTranslatef(-11.4, 0, 0);
-	gl_material_color(WHITE);
+	gl_material_color(TEAL);
 	draw_wing();
 	glPopMatrix();
 	
 	glPushMatrix();
 	glRotatef(90, 1, 0, 0);
 	glTranslatef(-11.4, 0, 0);
-	gl_material_color(WHITE);
+	gl_material_color(TEAL);
 	draw_wing();
 	glPopMatrix();
 	
 	glPushMatrix();
 	glRotatef(180, 1, 0, 0);
 	glTranslatef(-11.4, 0, 0);
-	gl_material_color(WHITE);
+	gl_material_color(TEAL);
 	draw_wing();
 	glPopMatrix();
 	
 	glPushMatrix();
 	glRotatef(-90, 1, 0, 0);
 	glTranslatef(-11.4, 0, 0);
-	gl_material_color(WHITE);
+	gl_material_color(TEAL);
 	draw_wing();
 	glPopMatrix();
 	

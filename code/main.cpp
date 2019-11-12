@@ -60,6 +60,8 @@ static void on_keyboard(unsigned char key, int x, int y){
 			shadeFlag = !shadeFlag;
 			glutPostRedisplay();
 			break;
+		case 'r': case 'R': random_colour = !random_colour; glutPostRedisplay(); break; //enables randomizing dart colour on a button press
+		case 'g': case 'G': pump_my_bitch_up = !pump_my_bitch_up; glutPostRedisplay(); break;
 		default: break;
 	}
 
@@ -114,9 +116,12 @@ static void on_display(){
 	
 	draw_cartesian();
 	
+	//used for colour randomization of dart
+	srand(time(NULL));
+	
 	draw_dart_base();
 	draw_wings();
-
+	
 
 	glutSwapBuffers();
 
