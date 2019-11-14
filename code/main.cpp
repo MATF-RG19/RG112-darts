@@ -1,6 +1,8 @@
 #include <iostream>
+#include <cmath>
 #include "GL/glut.h"
 #include "modeller.cpp"
+#include "cameraAndLightning.cpp"
 
 
 static void on_display();
@@ -8,12 +10,12 @@ static void on_reshape(int width, int height);
 static void on_keyboard(unsigned char key, int x, int y);
 static void glut_initialization(int* argc, char** argv);
 static void gl_initialization();
-//set_eye's arguments are the same as gluLookAt's first 6 arguments
-static void set_eye(int x, int y, int z, int xl, int yl, int zl);
-//sets scene lighting
-static void gl_lighting();
+
+
+
 //flag for switching shading technique with one button
 static bool shadeFlag = true;
+
 
 
 int main(int argc, char** argv){
@@ -28,7 +30,7 @@ int main(int argc, char** argv){
 static void glut_initialization(int* argc, char** argv){
 
 	glutInit(argc, argv);
-	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
+	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE);
 	glutInitWindowPosition(200, 100);
 	glutInitWindowSize(1000, 600);
 	glutCreateWindow("Darts");
@@ -43,6 +45,9 @@ static void glut_initialization(int* argc, char** argv){
 static void gl_initialization(){
 
 	glEnable(GL_DEPTH_TEST);
+	
+	//enables MSAA
+	glEnable(GL_MULTISAMPLE);
 	glLineWidth(1);
 
 	glClearColor(0, 0, 0, 0);
@@ -51,7 +56,7 @@ static void gl_initialization(){
 
 }
 
-static void on_keyboard(unsigned char key, int x, int y){
+static void on_keyboard(unsigned char key, int x, int y){ /*TODO: restrict camera movement so it can't go out of the playground*/
 
 	switch(key){
 		case 27: exit(EXIT_SUCCESS); break;
@@ -60,43 +65,39 @@ static void on_keyboard(unsigned char key, int x, int y){
 			shadeFlag = !shadeFlag;
 			glutPostRedisplay();
 			break;
-		case 'r': case 'R': random_colour = !random_colour; glutPostRedisplay(); break; //enables randomizing dart colour on a button press
+		case 'r': case 'R':
+			srand(time(NULL));
+			random_colour = !random_colour;
+			glutPostRedisplay();
+			break;
 		case 'g': case 'G': pump_my_bitch_up = !pump_my_bitch_up; glutPostRedisplay(); break;
+		case 'a': case 'A':
+			camAngle -= 0.05;
+			xVec = sin(camAngle);
+			zVec = -cos(camAngle);
+			glutPostRedisplay();
+			break;
+		case 'd': case 'D':
+			camAngle += 0.05;
+			xVec = sin(camAngle);
+			zVec = -cos(camAngle);
+			glutPostRedisplay();
+			break;
+		case 'w': case 'W':
+			x += xVec * camSpeed;
+			z += zVec * camSpeed;
+			glutPostRedisplay();
+			break;
+		case 's': case 'S':
+			x -= xVec * camSpeed;
+			z -= zVec * camSpeed;
+			glutPostRedisplay();
+			break;
 		default: break;
 	}
 
 }
 
-static void set_eye(int x, int y, int z, int xl, int yl, int zl){
-
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	gluLookAt(x, y, z, xl, yl, zl, 0, 1, 0);
-
-}
-
-static void gl_lighting(){
-
-	GLfloat light1Pos[] = {10, 10, 10, 0};
-	GLfloat light1Amb[] = {.6, .6, .6, 1};
-	GLfloat light1Diff[] = {.8, .8, .8, 1};
-	GLfloat light1Spe[] = {1, 1, 1, 1};
-
-	GLfloat spec[] = {1, 1, 1, 1};
-	GLfloat shininess = 20;
-
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
-	glLightfv(GL_LIGHT0, GL_POSITION, light1Pos);
-	glLightfv(GL_LIGHT0, GL_AMBIENT, light1Amb);
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, light1Diff);
-	glLightfv(GL_LIGHT0, GL_SPECULAR, light1Spe);
-
-
-	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shininess);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
-
-}
 
 static void on_reshape(int width, int height){
 
@@ -104,20 +105,20 @@ static void on_reshape(int width, int height){
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(60, (double)width / (double)height, 1, 50);
+	gluPerspective(60, (double)width / (double)height, 1, 150);
 
 }
 
 static void on_display(){
 
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-	set_eye(0, 0, 22, 0, 0, 0);
+	//initial position of the camera
+	set_eye(x, y, z, xVec, yVec, zVec);
 	gl_lighting();
 	
 	draw_cartesian();
 	
-	//used for colour randomization of dart
-	srand(time(NULL));
+	
 	
 	draw_dart_base();
 	draw_wings();
