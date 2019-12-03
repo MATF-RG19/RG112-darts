@@ -132,6 +132,8 @@ void draw_dart_base(){
 	glRotatef(-90, 0, 1, 0);
 	gluCylinder(quad, .45, .45, 3.5, 40, 40);
 	glPopMatrix();
+	
+	
 }
 
 void draw_wing(){
@@ -217,7 +219,6 @@ void draw_wings(){
 	gl_material_color(TEAL);
 	draw_wing();
 	glPopMatrix();
-	
 }
 
 void draw_cartesian(){
@@ -243,5 +244,75 @@ void draw_cartesian(){
 	glEnd();
 	
 	glEnable(GL_LIGHTING);
+	
+}
+
+void draw_planes(){
+	
+	//down
+	glPushMatrix();
+	gl_material_color(MAROON);
+	glBegin(GL_QUADS);
+	glVertex3f(100, -10, 100);
+	glVertex3f(100, -10, -100);
+	glVertex3f(-100, -10, -100);
+	glVertex3f(-100, -10, 100);
+	glEnd();
+	glPopMatrix();
+	
+	//right
+	glPushMatrix();
+	gl_material_color(YELLOW);
+	glBegin(GL_QUADS);
+	glVertex3f(100, -10, 100);
+	glVertex3f(100, -10, -100);
+	glVertex3f(100, 60, -100);
+	glVertex3f(100, 60, 100);
+	glEnd();
+	glPopMatrix();
+	
+	//front
+	glPushMatrix();
+	gl_material_color(GREEN);
+	glBegin(GL_QUADS);
+	glVertex3f(100, -10, -100);
+	glVertex3f(-100, -10, -100);
+	glVertex3f(-100, 60, -100);
+	glVertex3f(100, 60, -100);
+	glEnd();
+	glPopMatrix();
+	
+	//left
+	glPushMatrix();
+	gl_material_color(YELLOW);
+	glBegin(GL_QUADS);
+	glVertex3f(-100, -10, -100);
+	glVertex3f(-100, -10, 100);
+	glVertex3f(-100, 60, 100);
+	glVertex3f(-100, 60, -100);
+	glEnd();
+	glPopMatrix();
+	
+	//back
+	glPushMatrix();
+	gl_material_color(GREEN);
+	glBegin(GL_QUADS);
+	glVertex3f(-100, -10, 100);
+	glVertex3f(100, -10, 100);
+	glVertex3f(100, 60, 100);
+	glVertex3f(-100, 60, 100);
+	glEnd();
+	glPopMatrix();
+	
+	//up
+	glPushMatrix();
+	gl_material_color(MAROON);
+	glBegin(GL_QUADS);
+	glVertex3f(100, 60, 100);
+	glVertex3f(100, 60, -100);
+	glVertex3f(-100, 60, -100);
+	glVertex3f(-100, 60, 100);
+	glEnd();
+	glPopMatrix();
 	
 }

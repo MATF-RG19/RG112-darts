@@ -66,11 +66,14 @@ static void on_keyboard(unsigned char key, int x, int y){ /*TODO: restrict camer
 			glutPostRedisplay();
 			break;
 		case 'r': case 'R':
-			srand(time(NULL));
 			random_colour = !random_colour;
+			srand(time(NULL));
 			glutPostRedisplay();
 			break;
-		case 'g': case 'G': pump_my_bitch_up = !pump_my_bitch_up; glutPostRedisplay(); break;
+		case 'g': case 'G':
+			pump_my_bitch_up = !pump_my_bitch_up;
+			glutPostRedisplay();
+			break;
 		case 'a': case 'A':
 			camAngle -= 0.05;
 			xVec = sin(camAngle);
@@ -105,7 +108,7 @@ static void on_reshape(int width, int height){
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(60, (double)width / (double)height, 1, 150);
+	gluPerspective(60, (double)width / (double)height, 1, 300);
 
 }
 
@@ -117,12 +120,11 @@ static void on_display(){
 	gl_lighting();
 	
 	draw_cartesian();
-	
-	
-	
+
 	draw_dart_base();
 	draw_wings();
 	
+	draw_planes();
 
 	glutSwapBuffers();
 

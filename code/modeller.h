@@ -37,5 +37,9 @@ void draw_wings();
 void draw_dart_base();
 //sets the color of the particular primitive
 void gl_material_color(int COLOUR);
+//draws a plane
+void draw_planes();
+//draws a board
+void draw_board();
 
 #endif
