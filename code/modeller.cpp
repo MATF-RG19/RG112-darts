@@ -3,16 +3,17 @@
 #include "GL/glut.h"
 #include <cstdlib>
 
+void initial_colour(){
+	for(int i = 0; i < 4; i++){
+		colour_picker[i] = WHITE;
+	}
+	for(int i = 4; i < 11; i++){
+		colour_picker[i] = TEAL;
+	}
+	colour_picker[11] = GREY;
+}
 
 void gl_material_color(int COLOUR){
-	
-	if(random_colour){
-		COLOUR = rand() % 14;
-	}
-	
-	if(pump_my_bitch_up){
-		COLOUR = GOLD;
-	}
 	
 	switch(COLOUR){
 		case WHITE: ambient[0] = .9, ambient[1] = .9, ambient[2] = .9;
@@ -68,18 +69,23 @@ void gl_material_color(int COLOUR){
 	
 }
 
+void draw_dart(){
+	draw_dart_base();
+	draw_wings();
+}
+
 void draw_dart_base(){
 
 	//middle cylinder
 	glPushMatrix();
-	gl_material_color(WHITE);
+	gl_material_color(colour_picker[0]);
 	glRotatef(90, 0, 1, 0);
 	gluCylinder(quad, 1, 1, 4, 40, 10);
 	glPopMatrix();
 	
 	//right cylinder with different bases
 	glPushMatrix();
-	gl_material_color(TEAL);
+	gl_material_color(colour_picker[4]);
 	glTranslated(4, 0, 0);
 	glRotatef(90, 0, 1, 0);
 	gluCylinder(quad, 1, .6, 3, 40, 40);
@@ -87,7 +93,7 @@ void draw_dart_base(){
 	
 	//left cylinder with different bases
 	glPushMatrix();
-	gl_material_color(TEAL);
+	gl_material_color(colour_picker[5]);
 	glTranslated(0, 0, 0);
 	glRotatef(-90, 0, 1, 0);
 	gluCylinder(quad, 1, .6, 3, 40, 40);
@@ -95,7 +101,7 @@ void draw_dart_base(){
 	
 	//longest cylinder
 	glPushMatrix();
-	gl_material_color(WHITE);
+	gl_material_color(colour_picker[1]);
 	glTranslated(-8, 0, 0);
 	glRotatef(90, 0, 1, 0);
 	gluCylinder(quad, .6, .6, 5, 40, 40);
@@ -103,7 +109,7 @@ void draw_dart_base(){
 	
 	//before arrow cylinder
 	glPushMatrix();
-	gl_material_color(WHITE);
+	gl_material_color(colour_picker[2]);
 	glTranslated(7, 0, 0);
 	glRotatef(90, 0, 1, 0);
 	gluCylinder(quad, .6, .3, 0.8, 40, 40);
@@ -111,7 +117,7 @@ void draw_dart_base(){
 	
 	//arrow
 	glPushMatrix();
-	gl_material_color(GREY);
+	gl_material_color(colour_picker[11]);
 	glTranslated(7.8, 0, 0);
 	glRotatef(90, 0, 1, 0);
 	glutSolidCone(.3, 10, 30, 0);
@@ -119,7 +125,7 @@ void draw_dart_base(){
 	
 	//before wings holder
 	glPushMatrix();
-	gl_material_color(TEAL);
+	gl_material_color(colour_picker[6]);
 	glTranslated(-8, 0, 0);
 	glRotatef(-90, 0, 1, 0);
 	gluCylinder(quad, .6, .45, 0.8, 40, 40);
@@ -127,7 +133,7 @@ void draw_dart_base(){
 	
 	//wings holder
 	glPushMatrix();
-	gl_material_color(WHITE);
+	gl_material_color(colour_picker[3]);
 	glTranslated(-8.8, 0, 0);
 	glRotatef(-90, 0, 1, 0);
 	gluCylinder(quad, .45, .45, 3.5, 40, 40);
@@ -195,28 +201,28 @@ void draw_wings(){
 	
 	glPushMatrix();
 	glTranslatef(-11.4, 0, 0);
-	gl_material_color(TEAL);
+	gl_material_color(colour_picker[7]);
 	draw_wing();
 	glPopMatrix();
 	
 	glPushMatrix();
 	glRotatef(90, 1, 0, 0);
 	glTranslatef(-11.4, 0, 0);
-	gl_material_color(TEAL);
+	gl_material_color(colour_picker[8]);
 	draw_wing();
 	glPopMatrix();
 	
 	glPushMatrix();
 	glRotatef(180, 1, 0, 0);
 	glTranslatef(-11.4, 0, 0);
-	gl_material_color(TEAL);
+	gl_material_color(colour_picker[9]);
 	draw_wing();
 	glPopMatrix();
 	
 	glPushMatrix();
 	glRotatef(-90, 1, 0, 0);
 	glTranslatef(-11.4, 0, 0);
-	gl_material_color(TEAL);
+	gl_material_color(colour_picker[10]);
 	draw_wing();
 	glPopMatrix();
 }
@@ -315,4 +321,20 @@ void draw_planes(){
 	glEnd();
 	glPopMatrix();
 	
+}
+
+/*void draw_dartboard(){
+	draw_dartboard_base();
+	draw_dartboard_main();
+}*/
+
+
+void draw_dartboard_base(){
+	//lowest cuboid
+	glPushMatrix();
+	gl_material_color(BLACK);
+	glScaled(1.8, 0, 0);
+	glutSolidCube(10);
+	
+	glPopMatrix();
 }

@@ -48,9 +48,13 @@ static void gl_initialization(){
 	
 	//enables MSAA
 	glEnable(GL_MULTISAMPLE);
+	//glEnable(GL_COLOR_MATERIAL);
 	glLineWidth(1);
 
 	glClearColor(0, 0, 0, 0);
+	
+	//sets the starting colour of the dart
+	initial_colour();
 
 	glutMainLoop();
 
@@ -67,11 +71,27 @@ static void on_keyboard(unsigned char key, int x, int y){ /*TODO: restrict camer
 			break;
 		case 'r': case 'R':
 			random_colour = !random_colour;
-			srand(time(NULL));
+			if(random_colour) {
+				srand(time(NULL));
+				for (int i = 0; i < 12; i++) {
+					colour_picker[i] = rand() % 14;
+				}
+			}
+			else{
+				initial_colour();
+			}
 			glutPostRedisplay();
 			break;
 		case 'g': case 'G':
 			pump_my_bitch_up = !pump_my_bitch_up;
+			if(pump_my_bitch_up) {
+			for (int i = 0; i < 12; i++) {
+				colour_picker[i] = GOLD;
+			}
+			}
+			else{
+				initial_colour();
+			}
 			glutPostRedisplay();
 			break;
 		case 'a': case 'A':
@@ -120,11 +140,12 @@ static void on_display(){
 	gl_lighting();
 	
 	draw_cartesian();
-
-	draw_dart_base();
-	draw_wings();
+	
+	draw_dart();
 	
 	draw_planes();
+	
+	//draw_dartboard();
 
 	glutSwapBuffers();
 

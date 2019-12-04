@@ -1,5 +1,6 @@
 #ifndef _MODELLER_H_
 #define _MODELLER_H_
+#include <vector>
 
 //defines for colors used in gl_material_color function
 #define BLACK 0
@@ -26,9 +27,16 @@ GLUquadric *quad = gluNewQuadric();
 bool random_colour = false;
 //makes dart golden
 bool pump_my_bitch_up = false;
+//vector used to store rand values that determine the colour of the dart
+std::vector<int> colour_picker(12);
 
+
+//sets the initial colour for dart
+void initial_colour();
 //draws cartesian coordinate system
 void draw_cartesian();
+//calls 1st and 2nd function under this one
+void draw_dart();
 //draws one wing for the dart
 void draw_wing();
 //draws all 4 wings of a dart
@@ -39,7 +47,11 @@ void draw_dart_base();
 void gl_material_color(int COLOUR);
 //draws a plane
 void draw_planes();
-//draws a board
-void draw_board();
+//calls 1st and 2nd function under this one
+void draw_dartboard();
+//draws dartboard base()
+void draw_dartboard_base();
+//draws dartboard main round part
+void draw_dartboard_main();
 
 #endif
