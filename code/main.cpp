@@ -48,7 +48,7 @@ static void gl_initialization(){
 	
 	//enables MSAA
 	glEnable(GL_MULTISAMPLE);
-	//glEnable(GL_COLOR_MATERIAL);
+	//glEnable(GL_COLOR_MATERIAL); this could be used to colour objects instead of altering amb and diff light part
 	glLineWidth(1);
 
 	glClearColor(0, 0, 0, 0);
@@ -141,11 +141,15 @@ static void on_display(){
 	
 	draw_cartesian();
 	
+	glPushMatrix();
+	glTranslated(25, 0, 0);
 	draw_dart();
+	glPopMatrix();
 	
 	draw_planes();
 	
-	//draw_dartboard();
+	
+	draw_dartboard();
 
 	glutSwapBuffers();
 
