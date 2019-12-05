@@ -70,8 +70,14 @@ void gl_material_color(int COLOUR){
 }
 
 void draw_dart(){
+	glPushMatrix();
+	//dart vector is normal to dartboards center
+	glTranslatef(0, 19.8, 42.7);
+	glRotatef(90, 0, 1, 0);
+	glScalef(0.7, 0.7, 0.7);
 	draw_dart_base();
 	draw_wings();
+	glPopMatrix();
 }
 
 void draw_dart_base(){
@@ -261,10 +267,10 @@ void draw_planes(){
 	glPushMatrix();
 	glColor3f(0, .5, .1);
 	glBegin(GL_QUADS);
-	glVertex3f(100, -10, 100);
-	glVertex3f(100, -10, -100);
-	glVertex3f(-100, -10, -100);
-	glVertex3f(-100, -10, 100);
+	glVertex3f(92, -10, 130);
+	glVertex3f(92, -10, -130);
+	glVertex3f(-92, -10, -130);
+	glVertex3f(-92, -10, 130);
 	glEnd();
 	glPopMatrix();
 	
@@ -272,10 +278,10 @@ void draw_planes(){
 	glPushMatrix();
 	glColor3f(.5, .5, 0);
 	glBegin(GL_QUADS);
-	glVertex3f(100, -10, 100);
-	glVertex3f(100, -10, -100);
-	glVertex3f(100, 60, -100);
-	glVertex3f(100, 60, 100);
+	glVertex3f(92, -10, 130);
+	glVertex3f(92, -10, -130);
+	glVertex3f(92, 50, -130);
+	glVertex3f(92, 50, 130);
 	glEnd();
 	glPopMatrix();
 	
@@ -283,10 +289,10 @@ void draw_planes(){
 	glPushMatrix();
 	glColor3f(.5, .1, 0);
 	glBegin(GL_QUADS);
-	glVertex3f(100, -10, -100);
-	glVertex3f(-100, -10, -100);
-	glVertex3f(-100, 60, -100);
-	glVertex3f(100, 60, -100);
+	glVertex3f(92, -10, -130);
+	glVertex3f(-92, -10, -130);
+	glVertex3f(-92, 50, -130);
+	glVertex3f(92, 50, -130);
 	glEnd();
 	glPopMatrix();
 	
@@ -294,10 +300,10 @@ void draw_planes(){
 	glPushMatrix();
 	glColor3f(.5, .5, 0);
 	glBegin(GL_QUADS);
-	glVertex3f(-100, -10, -100);
-	glVertex3f(-100, -10, 100);
-	glVertex3f(-100, 60, 100);
-	glVertex3f(-100, 60, -100);
+	glVertex3f(-92, -10, -130);
+	glVertex3f(-92, -10, 130);
+	glVertex3f(-92, 50, 130);
+	glVertex3f(-92, 50, -130);
 	glEnd();
 	glPopMatrix();
 	
@@ -305,10 +311,10 @@ void draw_planes(){
 	glPushMatrix();
 	glColor3f(.5, .1, 0);
 	glBegin(GL_QUADS);
-	glVertex3f(-100, -10, 100);
-	glVertex3f(100, -10, 100);
-	glVertex3f(100, 60, 100);
-	glVertex3f(-100, 60, 100);
+	glVertex3f(-92, -10, 130);
+	glVertex3f(92, -10, 130);
+	glVertex3f(92, 50, 130);
+	glVertex3f(-92, 50, 130);
 	glEnd();
 	glPopMatrix();
 	
@@ -316,10 +322,10 @@ void draw_planes(){
 	glPushMatrix();
 	glColor3f(0, .5, .1);
 	glBegin(GL_QUADS);
-	glVertex3f(100, 60, 100);
-	glVertex3f(100, 60, -100);
-	glVertex3f(-100, 60, -100);
-	glVertex3f(-100, 60, 100);
+	glVertex3f(92, 50, 130);
+	glVertex3f(92, 50, -130);
+	glVertex3f(-92, 50, -130);
+	glVertex3f(-92, 50, 130);
 	glEnd();
 	glPopMatrix();
 	
@@ -328,15 +334,18 @@ void draw_planes(){
 }
 
 void draw_dartboard(){
+	glPushMatrix();
+	//sets the dartboard to be centered and forward
+	glTranslatef(0, -10, -127.2);
+	glScalef(1.4, 1.4, 1.4);
 	draw_dartboard_base();
 	draw_dartboard_main();
+	glPopMatrix();
 }
-
 
 void draw_dartboard_base(){
 	
 	glPushMatrix();
-	glTranslated(-15, -5, 0);
 	//lowest cuboid
 	glPushMatrix();
 	glScalef(1, .6, .4);
@@ -450,7 +459,7 @@ void draw_dartboard_base(){
 void draw_dartboard_main(){
 	
 	glPushMatrix();
-	glTranslated(-15, 24.6, .4);
+	glTranslated(0, 29.8, .4);
 	gl_material_color(BLACK);
 	
 	gluDisk(quad, 0, 6.4, 20, 7);

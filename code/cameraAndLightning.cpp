@@ -10,9 +10,9 @@ void gl_lighting();
 //initial camera angle
 double camAngle = 0;
 //initial camera position
-double x = 0, y = 0, z = 15;
+double x = 24, y = 25, z = 84;
 //initial camera LookAt vectors (they define the line of sight)
-double xVec = 0, yVec = 0, zVec = -1;
+double xVec = 0, yVec = 0, zVec = -127;
 //camera movement speed (this is multiplied by axes vector when moving with W or S)
 double camSpeed = 1;
 
@@ -26,7 +26,8 @@ void set_eye(double x, double y, double z, double xVec, double yVec, double zVec
 
 void gl_lighting(){
 	
-	GLfloat light1Pos[] = {10, 10, 10, 0};
+	//sets the light source in the right upper corner of the playground
+	GLfloat light1Pos[] = {129, 59, 129, 0};
 	GLfloat light1Amb[] = {.6, .6, .6, 1};
 	GLfloat light1Diff[] = {.8, .8, .8, 1};
 	GLfloat light1Spe[] = {1, 1, 1, 1};

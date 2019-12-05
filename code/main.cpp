@@ -107,13 +107,11 @@ static void on_keyboard(unsigned char key, int x, int y){ /*TODO: restrict camer
 			glutPostRedisplay();
 			break;
 		case 'w': case 'W':
-			x += xVec * camSpeed;
-			z += zVec * camSpeed;
+			z -= camSpeed;
 			glutPostRedisplay();
 			break;
 		case 's': case 'S':
-			x -= xVec * camSpeed;
-			z -= zVec * camSpeed;
+			z += camSpeed;
 			glutPostRedisplay();
 			break;
 		default: break;
@@ -141,13 +139,9 @@ static void on_display(){
 	
 	draw_cartesian();
 	
-	glPushMatrix();
-	glTranslated(25, 0, 0);
 	draw_dart();
-	glPopMatrix();
 	
 	draw_planes();
-	
 	
 	draw_dartboard();
 
