@@ -77,15 +77,9 @@ void on_timer_get_back(int value){
 	if(zVec > -1){
 		zVec -= 0.01;
 	}
-	else if(zVec < -1){
-		xVec += 0.01;
-	}
 	
 	if(xVec < 0){
 		xVec += 0.01;
-	}
-	else if(xVec > 0){
-		xVec -= 0.01;
 	}
 	
 	glutPostRedisplay();
