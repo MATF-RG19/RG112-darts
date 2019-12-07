@@ -1,8 +1,8 @@
 #include <iostream>
 #include <cmath>
 #include "GL/glut.h"
+#include "timer.cpp"
 #include "modeller.cpp"
-#include "cameraAndLightning.cpp"
 
 
 static void on_display();
@@ -55,7 +55,7 @@ static void gl_initialization(){
 	
 	//sets the starting colour of the dart
 	initial_colour();
-
+	
 	glutMainLoop();
 
 }
@@ -113,6 +113,9 @@ static void on_keyboard(unsigned char key, int x, int y){ /*TODO: restrict camer
 		case 's': case 'S':
 			z += camSpeed;
 			glutPostRedisplay();
+			break;
+		case 'f': case 'F':
+			inspect_animation();
 			break;
 		default: break;
 	}
