@@ -50,6 +50,9 @@ static void gl_initialization(){
 	glEnable(GL_DEPTH_TEST);
 	srand(time(NULL));
 	
+	//defines type of transparency
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	
 	//enables MSAA
 	glEnable(GL_MULTISAMPLE);
 	//glEnable(GL_COLOR_MATERIAL); this could be used to colour objects instead of altering amb and diff light part
@@ -65,7 +68,7 @@ static void gl_initialization(){
 	set_texture(CEILING, 3);
 	set_texture(FRONT, 4);
 	set_texture(BACK, 5);
-	//set_transparent_texture(DARTBOARD, 6);
+	set_transparent_texture(DARTBOARD, 6);
 	
 	unbind_texture();
 	

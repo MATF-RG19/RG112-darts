@@ -160,7 +160,7 @@ void draw_textures(){
 	draw_front_wall_texture();
 	draw_back_wall_texture();
 	draw_ceiling_texture();
-	//draw_dartboard_texture();
+	draw_dartboard_texture();
 }
 
 void set_texture(char* path, int i){
@@ -317,5 +317,30 @@ void draw_back_wall_texture() {
 	glEnd();
 	
 	glBindTexture(GL_TEXTURE_2D, 0);
+	
+}
+
+void draw_dartboard_texture() {
+	
+	glEnable(GL_BLEND);
+	glBindTexture(GL_TEXTURE_2D, textureNames[6]);
+	glBegin(GL_QUADS);
+	glNormal3f(0, 0, -1);
+		glTexCoord2f(.022, 0);
+		glVertex3f(-9.3, 21.3, -126);
+		
+		glTexCoord2f(1.027, 0);
+		glVertex3f(9.24, 21.3, -126);
+		
+		glTexCoord2f(1.027, 1);
+		glVertex3f(9.24, 41, -126);
+		
+		glTexCoord2f(.022, 1);
+		glVertex3f(-9.3, 41, -126);
+	glEnd();
+	
+	glBindTexture(GL_TEXTURE_2D, 0);
+	
+	glDisable(GL_BLEND);
 	
 }
