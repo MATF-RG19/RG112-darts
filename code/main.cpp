@@ -3,6 +3,9 @@
 #include "GL/glut.h"
 #include "timer.cpp"
 #include "modeller.cpp"
+#include "image.cpp"
+#include <cstring>
+#include <string>
 
 
 static void on_display();
@@ -45,6 +48,7 @@ static void glut_initialization(int* argc, char** argv){
 static void gl_initialization(){
 
 	glEnable(GL_DEPTH_TEST);
+	srand(time(NULL));
 	
 	//enables MSAA
 	glEnable(GL_MULTISAMPLE);
@@ -53,7 +57,18 @@ static void gl_initialization(){
 
 	glClearColor(0, 0, 0, 0);
 	
-	//sets the starting colour of the dart
+	init_textures();
+	
+	set_texture(FLOOR, 0);
+	set_texture(LEFT_WALL, 1);
+	set_texture(RIGHT_WALL, 2);
+	set_texture(CEILING, 3);
+	set_texture(FRONT, 4);
+	set_texture(BACK, 5);
+	//set_transparent_texture(DARTBOARD, 6);
+	
+	unbind_texture();
+	
 	initial_colour();
 	
 	glutMainLoop();
@@ -72,7 +87,6 @@ static void on_keyboard(unsigned char key, int x, int y){ /*TODO: restrict camer
 		case 'r': case 'R':
 			random_colour = !random_colour;
 			if(random_colour) {
-				srand(time(NULL));
 				for (int i = 0; i < 12; i++) {
 					colour_picker[i] = rand() % 14;
 				}
@@ -147,6 +161,8 @@ static void on_display(){
 	draw_planes();
 	
 	draw_dartboard();
+	
+	draw_textures();
 
 	glutSwapBuffers();
 
