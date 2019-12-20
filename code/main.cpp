@@ -6,11 +6,13 @@
 #include "image.cpp"
 #include <cstring>
 #include <string>
+#include "ui.cpp"
 
 
 static void on_display();
 static void on_reshape(int width, int height);
 static void on_keyboard(unsigned char key, int x, int y);
+static void on_mouse(int button, int state, int x, int y);
 static void glut_initialization(int* argc, char** argv);
 static void gl_initialization();
 
@@ -18,7 +20,6 @@ static void gl_initialization();
 
 //flag for switching shading technique with one button
 static bool shadeFlag = true;
-
 
 
 int main(int argc, char** argv){
@@ -33,6 +34,7 @@ int main(int argc, char** argv){
 static void glut_initialization(int* argc, char** argv){
 
 	glutInit(argc, argv);
+	
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE);
 	glutInitWindowPosition(200, 100);
 	glutInitWindowSize(1000, 600);
@@ -41,6 +43,7 @@ static void glut_initialization(int* argc, char** argv){
 	glutKeyboardFunc(on_keyboard);
 	glutDisplayFunc(on_display);
 	glutReshapeFunc(on_reshape);
+	glutMouseFunc(on_mouse);
 
 }
 
@@ -52,6 +55,9 @@ static void gl_initialization(){
 	
 	//defines type of transparency
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	
+	//sets pixel storage method for UI
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	
 	//enables MSAA
 	glEnable(GL_MULTISAMPLE);
@@ -139,9 +145,14 @@ static void on_keyboard(unsigned char key, int x, int y){ /*TODO: restrict camer
 
 }
 
+static void on_mouse(int button, int state, int x, int y){
+	if(button == GLUT_LEFT_BUTTON && state == GLUT_UP){
+		throw_animation();
+	}
+}
+
 
 static void on_reshape(int width, int height){
-
 	glViewport(0, 0, width, height);
 
 	glMatrixMode(GL_PROJECTION);
@@ -161,11 +172,13 @@ static void on_display(){
 	
 	draw_dart();
 	
-	draw_planes();
+	//draw_planes();
 	
 	draw_dartboard();
 	
 	draw_textures();
+	
+	draw_ui();
 
 	glutSwapBuffers();
 

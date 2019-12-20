@@ -1,3 +1,5 @@
+#ifndef _MODELLER_CPP_
+#define _MODELLER_CPP_
 #include "modeller.h"
 #include <iostream>
 #include "GL/glut.h"
@@ -466,3 +468,4 @@ void draw_dartboard_main(){
 	glPopMatrix();
 
 }
+#endif

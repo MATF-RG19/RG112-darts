@@ -1,10 +1,15 @@
 #include "GL/glut.h"
 #include "cameraAndLightning.cpp"
+#include "modeller.h"
+
 
 bool inspect_active = false;
+bool throw_active = true;
+int dart_throw_value = 0;
 
 void on_timer_inspect(int value);
 void on_timer_get_back(int value);
+void on_timer_throw(int value);
 
 void inspect_animation(){
 	if(!inspect_active){
@@ -14,6 +19,34 @@ void inspect_animation(){
 	else{
 		glutTimerFunc(20, on_timer_get_back, 0);
 		inspect_active = false;
+	}
+}
+
+void throw_animation(){
+	if(!throw_active){
+		glutTimerFunc(25, on_timer_throw, 0);
+		throw_active = true;
+	}
+	else{
+		dart_throw_value = 0;
+		throw_active  = false;
+	}
+}
+
+void on_timer_throw(int value){
+	if(value){
+		return;
+	}
+	
+	
+	if(dart_throw_value < 127) {
+		dart_throw_value++;
+	}
+	
+	glutPostRedisplay();
+	
+	if(throw_active){
+		glutTimerFunc(10, on_timer_throw, 0);
 	}
 }
 
