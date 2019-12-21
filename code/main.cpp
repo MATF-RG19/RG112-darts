@@ -146,8 +146,20 @@ static void on_keyboard(unsigned char key, int x, int y){ /*TODO: restrict camer
 }
 
 static void on_mouse(int button, int state, int x, int y){
-	if(button == GLUT_LEFT_BUTTON && state == GLUT_UP){
-		throw_animation();
+	if(button == GLUT_LEFT_BUTTON && state == GLUT_UP && can_throw){
+		if(dart_num && time_left) {
+			throw_animation();
+			dart_num -= 1;
+		}
+	}
+	
+	//resets the game
+	if(button == GLUT_RIGHT_BUTTON && state == GLUT_UP){
+		dart_num = 3;
+		time_left = 12;
+		score = 0;
+		throw_active = false;
+		can_throw = true;
 	}
 }
 
@@ -168,9 +180,12 @@ static void on_display(){
 	set_eye(x, y, z, xVec, yVec, zVec);
 	gl_lighting();
 	
-	draw_cartesian();
+	//draw_cartesian();
 	
-	draw_dart();
+	glPushMatrix();
+		glTranslatef(0, 0, -dart_throw_vector_speed);
+		draw_dart();
+	glPopMatrix();
 	
 	//draw_planes();
 	

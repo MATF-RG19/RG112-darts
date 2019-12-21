@@ -8,7 +8,7 @@ void gl_lighting();
 //initial camera angle
 double camAngle = 0;
 //initial camera position
-double x = 24, y = 25, z = 84;
+double x = 24, y = 35, z = 84;
 //initial camera LookAt vectors (they define the line of sight)
 double xVec = 0, yVec = 0, zVec = -1;
 //camera movement speed (this is multiplied by axes vector when moving with W or S)
