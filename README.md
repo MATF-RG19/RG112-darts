@@ -2,12 +2,12 @@
   - My take on popular Darts game as a project for course Computer Graphics at the Faculty of Mathematics
 
 ## Goal of the game: ##
-   - Goal of the game is to get the highest score possible which is calculated like in real life darts game
+   - Goal of the game is to get the highest score possible which is calculated like in real life darts game\
    
 
 | Controls | Description |
 | --- | --- |
-| 🇱🇲🇧 | throws dart (HOLD) |
+| <kdb> LMB </kdb> | throws dart (HOLD) |
 | 🇷🇲🇧 | resets the game |
 | 🇻 | changes the shade model |
 | r | randomizes the colour of the dart |
