@@ -1,4 +1,4 @@
-# RG112-darts
+# RG112-darts 🎯🎯🎯
 My take on popular Darts game as a project for course Computer Graphics at the Faculty of Mathematics.
 
 ## Goal of the game: ##
