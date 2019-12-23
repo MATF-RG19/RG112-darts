@@ -8,7 +8,7 @@
 | Controls | Description |
 | --- | --- |
 | 🇱🇲🇧 | throws dart (HOLD) |
-| 🇷🇲🇧 | resets the game |
+| 🇷🇲🇧 | resets the game (DOUBLE CLICK) |
 | 🇻 | changes the shade model |
 | 🇷 | randomizes the colour of the dart |
 | 🇬 | bad boy amongs all R's |
