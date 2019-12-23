@@ -8,6 +8,7 @@ bool throw_active = false;
 bool can_throw = true;
 
 double dart_throw_vector_speed = 0;
+double dart_throw_rotation_angle = 0;
 
 void on_timer_inspect(int value);
 void on_timer_get_back(int value);
@@ -41,11 +42,13 @@ void on_timer_throw(int value){
 	if(dart_throw_vector_speed <= 158){
 		can_throw = false;
 		dart_throw_vector_speed += 3;
+		dart_throw_rotation_angle += 12;
 	}
 	else{
 		glutTimerFunc(20, go_timer, 0);
 		throw_active = false;
 		dart_throw_vector_speed = 0;
+		dart_throw_rotation_angle = 0;
 		can_throw = true;
 	}
 	

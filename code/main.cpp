@@ -190,9 +190,17 @@ static void on_display(){
 	
 	//draw_cartesian();
 	
+	
 	glPushMatrix();
-		glTranslatef(0, 0, -dart_throw_vector_speed);
-		draw_dart();
+			//moves dart back to proper position determined by the dart_throw_vector_speed
+			glTranslatef(-.1, 31.1, 42.7 - dart_throw_vector_speed);
+			//rotates the dart
+			glRotatef(dart_throw_rotation_angle, 0, 0, 1);
+			//moves dart back to (0, 0, 0) so it can be rotated properly
+			glTranslatef(.1, -31.1, -42.7 + dart_throw_vector_speed);
+			//moves dart forwards
+			glTranslatef(0, 0, -dart_throw_vector_speed);
+			draw_dart();
 	glPopMatrix();
 	
 	//draw_planes();
