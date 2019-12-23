@@ -3,7 +3,8 @@
 
 ## Goal of the game: ##
    - Goal of the game is to get the highest score possible which is calculated like in real life darts game <br>
-   
+ 
+ 
 
 | Controls | Description |
 | --- | --- |
