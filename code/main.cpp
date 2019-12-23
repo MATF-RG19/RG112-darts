@@ -156,10 +156,18 @@ static void on_mouse(int button, int state, int x, int y){
 	//resets the game
 	if(button == GLUT_RIGHT_BUTTON && state == GLUT_UP){
 		dart_num = 3;
-		time_left = 12;
+		if(throw_active){
+			time_left = 12.02;
+			dart_throw_vector_speed = -3;
+		}
+		else{
+			time_left = 12;
+			dart_throw_vector_speed = 0;
+		}
 		score = 0;
-		throw_active = false;
 		can_throw = true;
+		throw_active = false;
+		glutPostRedisplay();
 	}
 }
 

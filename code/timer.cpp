@@ -12,6 +12,8 @@ double dart_throw_vector_speed = 0;
 void on_timer_inspect(int value);
 void on_timer_get_back(int value);
 void on_timer_throw(int value);
+//keeps timer running when !throw_active
+void go_timer(int value);
 
 void inspect_animation(){
 	if(!inspect_active){
@@ -37,10 +39,18 @@ void on_timer_throw(int value){
 	}
 	
 	if(dart_throw_vector_speed <= 158){
+		can_throw = false;
 		dart_throw_vector_speed += 3;
 	}
 	else{
-		can_throw = false;
+		glutTimerFunc(20, go_timer, 0);
+		throw_active = false;
+		dart_throw_vector_speed = 0;
+		can_throw = true;
+	}
+	
+	if(!throw_active){
+		can_throw = true;
 	}
 	
 	if(time_left > 0.02) {
@@ -52,8 +62,23 @@ void on_timer_throw(int value){
 	
 	glutPostRedisplay();
 	
+	
 	if(throw_active){
 		glutTimerFunc(20, on_timer_throw, 0);
+	}
+}
+
+void go_timer(int value){
+	if(value){
+		return;
+	}
+	
+	time_left -= .02;
+	
+	glutPostRedisplay();
+	
+	if(!throw_active){
+		glutTimerFunc(20, go_timer, 0);
 	}
 }
 
