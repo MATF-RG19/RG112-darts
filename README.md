@@ -10,6 +10,6 @@
 | 🇱🇲🇧 | throws dart (HOLD) |
 | 🇷🇲🇧 | resets the game |
 | 🇻 | changes the shade model |
-| 🇷 | randomizes the colour of the dart |
+| <kdb> a <kdb> | randomizes the colour of the dart |
 | 🇬 | bad boy amongs all R's |
 | 🇫 | inspects the dart (TOGGLE) |
