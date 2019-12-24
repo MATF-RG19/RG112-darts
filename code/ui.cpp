@@ -2,11 +2,13 @@
 #include "ui.h"
 #include <iostream>
 #include <cstdio>
+#include "GL/glut.h"
 
 void change_string_content(){
 	sprintf(dart_num_text, "NUMBER OF DARTS: %i", dart_num);
 	sprintf(score_text, "SCORE: %i", score);
 	sprintf(time_left_text, "TIME LEFT: %.3lf", time_left);
+	sprintf(dart_power_text, "POWER: %.1lf", dart_throw_power - 2);
 }
 
 void draw_string(double x, double y, char* string){
@@ -35,14 +37,16 @@ void draw_ui(){
 		
 		if(time_left <= 0.02){
 			draw_string(0, -0.75, "YOU'RE TOO SLOW.. IDIOT!");
+			can_throw = false;
 		}
 		else if(dart_num <= 0){
 			draw_string(.14, -0.75, "NO MORE DARTS, MATE");
 		}
 		else{
 			change_string_content();
+			draw_string(.14, -.65, dart_num_text);
+			draw_string(.14, -.75, dart_power_text);
 			draw_string(.14, -.85, time_left_text);
-			draw_string(.14, -.75, dart_num_text);
 			draw_string(.14, -.95, score_text);
 		}
 		glEnable(GL_LIGHTING);

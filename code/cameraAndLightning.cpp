@@ -13,6 +13,8 @@ double x = 24, y = 35, z = 84;
 double xVec = 0, yVec = 0, zVec = -1;
 //camera movement speed (this is multiplied by axes vector when moving with W or S)
 double camSpeed = 1;
+//flag for switching shading technique with one button
+bool shadeFlag = true;
 
 void set_eye(double x, double y, double z, double xVec, double yVec, double zVec){
 	

@@ -7,7 +7,10 @@ bool inspect_active = false;
 bool throw_active = false;
 bool can_throw = true;
 
+//mouse state is used to determine if the mouse is UP or DOWN when pressed
+int mouse_state = 0;
 double dart_throw_vector_speed = 0;
+double dart_throw_power = 2;
 double dart_throw_rotation_angle = 0;
 
 void on_timer_inspect(int value);
@@ -15,6 +18,8 @@ void on_timer_get_back(int value);
 void on_timer_throw(int value);
 //keeps timer running when !throw_active
 void go_timer(int value);
+//used to track for how long is the LMB held
+void dart_power(int value);
 
 void inspect_animation(){
 	if(!inspect_active){
@@ -41,13 +46,15 @@ void on_timer_throw(int value){
 	
 	if(dart_throw_vector_speed <= 158){
 		can_throw = false;
-		dart_throw_vector_speed += 3;
-		dart_throw_rotation_angle += 12;
+		dart_throw_vector_speed += dart_throw_power;
+		//the expression on the right is there to modify the rotation a bit depending on the dart_throw_power
+		dart_throw_rotation_angle += 18 + (dart_throw_power - 4)*2;
 	}
 	else{
 		glutTimerFunc(20, go_timer, 0);
 		throw_active = false;
 		dart_throw_vector_speed = 0;
+		dart_throw_power = 2;
 		dart_throw_rotation_angle = 0;
 		can_throw = true;
 	}
@@ -82,6 +89,22 @@ void go_timer(int value){
 	
 	if(!throw_active){
 		glutTimerFunc(20, go_timer, 0);
+	}
+}
+
+void dart_power(int value){
+	if(value){
+		return;
+	}
+	
+	if(dart_throw_power < 6.9) {
+		dart_throw_power += 0.1;
+	}
+	
+	glutPostRedisplay();
+	
+	if(mouse_state == GLUT_DOWN){
+		glutTimerFunc(15, dart_power, 0);
 	}
 }
 

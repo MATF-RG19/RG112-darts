@@ -13,13 +13,10 @@ static void on_display();
 static void on_reshape(int width, int height);
 static void on_keyboard(unsigned char key, int x, int y);
 static void on_mouse(int button, int state, int x, int y);
+static void on_passive_mouse_motion(int x, int y);
 static void glut_initialization(int* argc, char** argv);
 static void gl_initialization();
 
-
-
-//flag for switching shading technique with one button
-static bool shadeFlag = true;
 
 
 int main(int argc, char** argv){
@@ -44,6 +41,7 @@ static void glut_initialization(int* argc, char** argv){
 	glutDisplayFunc(on_display);
 	glutReshapeFunc(on_reshape);
 	glutMouseFunc(on_mouse);
+	glutPassiveMotionFunc(on_passive_mouse_motion);
 
 }
 
@@ -146,15 +144,20 @@ static void on_keyboard(unsigned char key, int x, int y){ /*TODO: restrict camer
 }
 
 static void on_mouse(int button, int state, int x, int y){
-	if(button == GLUT_LEFT_BUTTON && state == GLUT_UP && can_throw){
-		if(dart_num && time_left) {
-			throw_animation();
+	if(button == GLUT_LEFT_BUTTON && can_throw && dart_num && time_left && !inspect_active){
+		if(state == GLUT_DOWN){
+			mouse_state = state;
+			glutTimerFunc(15, dart_power, 0);
+		}
+		else if(state == GLUT_UP){
+			mouse_state = state;
 			dart_num -= 1;
+			throw_animation();
 		}
 	}
 	
 	//resets the game
-	if(button == GLUT_RIGHT_BUTTON && state == GLUT_UP){
+	if(button == GLUT_RIGHT_BUTTON && state == GLUT_UP && !inspect_active){
 		dart_num = 3;
 		if(throw_active){
 			time_left = 12.02;
@@ -171,6 +174,10 @@ static void on_mouse(int button, int state, int x, int y){
 	}
 }
 
+static void on_passive_mouse_motion(int x, int y){
+
+}
+
 
 static void on_reshape(int width, int height){
 	glViewport(0, 0, width, height);
@@ -180,6 +187,8 @@ static void on_reshape(int width, int height){
 	gluPerspective(60, (double)width / (double)height, 1, 300);
 
 }
+
+
 
 static void on_display(){
 
