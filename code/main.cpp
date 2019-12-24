@@ -162,7 +162,7 @@ static void on_mouse(int button, int state, int x, int y){
 		dart_num = 3;
 		if(throw_active){
 			time_left = 12.02;
-			dart_throw_vector_speed = -3;
+			dart_throw_vector_speed = -2;
 		}
 		else{
 			time_left = 12;
