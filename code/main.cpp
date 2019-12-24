@@ -7,6 +7,7 @@
 #include <cstring>
 #include <string>
 #include "ui.cpp"
+#include <cmath>
 
 
 static void on_display();
@@ -147,7 +148,7 @@ static void on_mouse(int button, int state, int x, int y){
 	if(button == GLUT_LEFT_BUTTON && can_throw && dart_num && time_left && !inspect_active){
 		if(state == GLUT_DOWN){
 			mouse_state = state;
-			glutTimerFunc(15, dart_power, 0);
+			glutTimerFunc(10, dart_power, 0);
 		}
 		else if(state == GLUT_UP){
 			mouse_state = state;
@@ -167,6 +168,7 @@ static void on_mouse(int button, int state, int x, int y){
 			time_left = 12;
 			dart_throw_vector_speed = 0;
 		}
+		dart_throw_power = 2;
 		score = 0;
 		can_throw = true;
 		throw_active = false;
@@ -175,17 +177,20 @@ static void on_mouse(int button, int state, int x, int y){
 }
 
 static void on_passive_mouse_motion(int x, int y){
-
+	pointer_x = x;
+	pointer_y = y;
+	glutPostRedisplay();
 }
 
 
 static void on_reshape(int width, int height){
-	glViewport(0, 0, width, height);
+	window_width = width;
+	window_height = height;
+	glViewport(0, 0, window_width, window_height);
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(60, (double)width / (double)height, 1, 300);
-
+	gluPerspective(60, (double)window_width / (double)window_height, 1, 300);
 }
 
 

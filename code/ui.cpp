@@ -9,6 +9,7 @@ void change_string_content(){
 	sprintf(score_text, "SCORE: %i", score);
 	sprintf(time_left_text, "TIME LEFT: %.3lf", time_left);
 	sprintf(dart_power_text, "POWER: %.1lf", dart_throw_power - 2);
+	sprintf(pointer, "+");
 }
 
 void draw_string(double x, double y, char* string){
@@ -27,7 +28,7 @@ void draw_ui(){
 		glDisable(GL_DEPTH_TEST);
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		glOrtho(-100, 100, -100, -100, 1, 300);
+		glOrtho(0, window_width, window_height, 0, 0, 1);
 		
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
@@ -36,18 +37,19 @@ void draw_ui(){
 		glColor3f(1, .35, .8);
 		
 		if(time_left <= 0.02){
-			draw_string(0, -0.75, "YOU'RE TOO SLOW.. IDIOT!");
+			draw_string(window_width * .497, window_height * .8, "YOU'RE TOO SLOW.. IDIOT!");
 			can_throw = false;
 		}
 		else if(dart_num <= 0){
-			draw_string(.14, -0.75, "NO MORE DARTS, MATE");
+			draw_string(window_width * .527, window_height * .8, "NO MORE DARTS, MATE");
 		}
 		else{
 			change_string_content();
-			draw_string(.14, -.65, dart_num_text);
-			draw_string(.14, -.75, dart_power_text);
-			draw_string(.14, -.85, time_left_text);
-			draw_string(.14, -.95, score_text);
+			draw_string(pointer_x, pointer_y, pointer);
+			draw_string(window_width * .548, window_height * .80, dart_num_text);
+			draw_string(window_width * .548, window_height * .85, dart_power_text);
+			draw_string(window_width * .548, window_height * .90, time_left_text);
+			draw_string(window_width * .548, window_height * .95, score_text);
 		}
 		glEnable(GL_LIGHTING);
 		

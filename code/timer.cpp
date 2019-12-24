@@ -104,7 +104,7 @@ void dart_power(int value){
 	glutPostRedisplay();
 	
 	if(mouse_state == GLUT_DOWN){
-		glutTimerFunc(15, dart_power, 0);
+		glutTimerFunc(10, dart_power, 0);
 	}
 }
 
