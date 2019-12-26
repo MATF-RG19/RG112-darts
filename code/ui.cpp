@@ -28,7 +28,7 @@ void draw_ui(){
 		glDisable(GL_DEPTH_TEST);
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		glOrtho(0, window_width, window_height, 0, 0, 1);
+		glOrtho(0, window_width, window_height, 0, 0, 157);
 		
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
@@ -69,4 +69,14 @@ void draw_ui(){
 		glPopMatrix();
 	}
 	
+}
+
+int score_tracker(double x, double y){
+	//the dart-board coordinates when camera in the default position
+	if(x == -11.6 && y == -12.5){
+		return 50;
+	}
+	else if(x > -15.1 && x < 8.5 && y > 14.5 && y < 10.5){
+		return 10;
+	}
 }

@@ -11,6 +11,13 @@ bool can_throw = true;
 int mouse_state = 0;
 double dart_throw_vector_speed = 0;
 double dart_throw_power = 2;
+//starting position of the dart
+double dart_throw_pos_x = 0;
+//used to increment until it reaches dart_throw_pos_x
+double dart_throw_pos_x_tracker = 0;
+//starting position of the dart
+double dart_throw_pos_y = 31.1;
+double dart_throw_pos_y_tracker = 0;
 double dart_throw_rotation_angle = 0;
 
 void on_timer_inspect(int value);
@@ -47,12 +54,38 @@ void on_timer_throw(int value){
 	if(dart_throw_vector_speed <= 158){
 		can_throw = false;
 		dart_throw_vector_speed += dart_throw_power;
+		if(dart_throw_pos_x < 0){
+			if(dart_throw_pos_x_tracker > dart_throw_pos_x){
+				dart_throw_pos_x_tracker += dart_throw_pos_x * dart_throw_power / 158.0;
+			}
+		}
+		else{
+			if(dart_throw_pos_x_tracker < dart_throw_pos_x){
+				dart_throw_pos_x_tracker += dart_throw_pos_x * dart_throw_power / 158.0;
+			}
+		}
+		
+		if(dart_throw_pos_y < 0){
+			if(dart_throw_pos_y_tracker > dart_throw_pos_y){
+				dart_throw_pos_y_tracker += dart_throw_pos_y * dart_throw_power / 158.0;
+			}
+		}
+		else{
+			if(dart_throw_pos_y_tracker < dart_throw_pos_y){
+				dart_throw_pos_y_tracker += dart_throw_pos_y * dart_throw_power / 158.0;
+			}
+		}
+		
 		//the expression on the right is there to modify the rotation a bit depending on the dart_throw_power
 		dart_throw_rotation_angle += 18 + (dart_throw_power - 4)*2;
 	}
 	else{
 		glutTimerFunc(20, go_timer, 0);
+		//printf("%.1lf %.1lf\n", pointer_x, pointer_y);
+		score += score_tracker(pointer_x, pointer_y);
 		throw_active = false;
+		dart_throw_pos_y_tracker = 0;
+		dart_throw_pos_x_tracker = 0;
 		dart_throw_vector_speed = 0;
 		dart_throw_power = 2;
 		dart_throw_rotation_angle = 0;

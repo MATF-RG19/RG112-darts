@@ -9,10 +9,13 @@ char dart_num_text[MAX_SIZE], score_text[MAX_SIZE],  time_left_text[MAX_SIZE], d
 int dart_num = 3, score = 0;
 double pointer_x = 0, pointer_y = 0;
 double time_left = 12;
-double window_width, window_height;
+//the last two are used for optimization (cutting down on excess calculations)
+double window_width, window_height, window_width_half, window_height_half;
 
 void draw_string(double x, double y, char* string);
 //function exists because sprintf needed a place to live :(
 void change_string_content();
+//used to track where the dart hit on the dart-board
+int score_tracker(double x, double y);
 
 #endif

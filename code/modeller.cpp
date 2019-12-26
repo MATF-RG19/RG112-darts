@@ -74,7 +74,7 @@ void gl_material_color(int COLOUR){
 void draw_dart(){
 	glPushMatrix();
 	//dart vector is normal to the center of the dartboard
-	glTranslatef(-.1, 31.1, 42.7);
+	glTranslatef(0, 31.1, 42.7);
 	glRotatef(90, 0, 1, 0);
 	glScalef(0.7, 0.7, 0.7);
 	draw_dart_base();

@@ -148,9 +148,15 @@ static void on_mouse(int button, int state, int x, int y){
 	if(button == GLUT_LEFT_BUTTON && can_throw && dart_num && time_left && !inspect_active){
 		if(state == GLUT_DOWN){
 			mouse_state = state;
+			//radnomization can effect coordinates by +1, 0 or -1
+			dart_throw_pos_x = (x - window_width_half) * 91 / window_width_half  + rand() % 3 - 1;
+			//don't even ask, it works just fine
+			dart_throw_pos_y = -(y - (window_height - (41.1 * window_height / 60))) * 18.9 / (window_height - (41.1 * window_height / 60)) + rand() % 3 - 1;
 			glutTimerFunc(10, dart_power, 0);
 		}
 		else if(state == GLUT_UP){
+			//adds +1, 0 -1 to darts power
+			dart_throw_power += rand() % 3 - 1;
 			mouse_state = state;
 			dart_num -= 1;
 			throw_animation();
@@ -163,10 +169,14 @@ static void on_mouse(int button, int state, int x, int y){
 		if(throw_active){
 			time_left = 12.02;
 			dart_throw_vector_speed = -2;
+			dart_throw_pos_x_tracker = -dart_throw_pos_x * dart_throw_power / 158.0;
+			dart_throw_pos_y_tracker = -dart_throw_pos_y * dart_throw_power / 158.0;
 		}
 		else{
 			time_left = 12;
 			dart_throw_vector_speed = 0;
+			dart_throw_pos_x_tracker = 0;
+			dart_throw_pos_y_tracker = 0;
 		}
 		dart_throw_power = 2;
 		score = 0;
@@ -185,7 +195,9 @@ static void on_passive_mouse_motion(int x, int y){
 
 static void on_reshape(int width, int height){
 	window_width = width;
+	window_width_half = window_width / 2.0;
 	window_height = height;
+	window_height_half = window_height / 2.0;
 	glViewport(0, 0, window_width, window_height);
 
 	glMatrixMode(GL_PROJECTION);
@@ -207,13 +219,13 @@ static void on_display(){
 	
 	glPushMatrix();
 			//moves dart back to proper position determined by the dart_throw_vector_speed
-			glTranslatef(-.1, 31.1, 42.7 - dart_throw_vector_speed);
+			glTranslatef(dart_throw_pos_x_tracker, 31.1 + dart_throw_pos_y_tracker, 42.7 - dart_throw_vector_speed);
 			//rotates the dart
 			glRotatef(dart_throw_rotation_angle, 0, 0, 1);
 			//moves dart back to (0, 0, 0) so it can be rotated properly
-			glTranslatef(.1, -31.1, -42.7 + dart_throw_vector_speed);
+			glTranslatef(-dart_throw_pos_x_tracker, -31.1 - dart_throw_pos_y_tracker, -42.7 + dart_throw_vector_speed);
 			//moves dart forwards
-			glTranslatef(0, 0, -dart_throw_vector_speed);
+			glTranslatef(dart_throw_pos_x_tracker, dart_throw_pos_y_tracker, -dart_throw_vector_speed);
 			draw_dart();
 	glPopMatrix();
 	
