@@ -2,14 +2,16 @@
   - My take on popular Darts game as a project for course Computer Graphics at the Faculty of Mathematics
 
 ## Goal of the game: ##
-   - Goal of the game is to get the highest score possible which is calculated like in real life darts game
+   - Goal of the game is to get the highest score possible which is calculated like in real life darts game  
+     
+       
+       
    
    <i><b> protip: </b></i> Aiming is windows width & height dependant (aim at the top right of the window for
-                           the dart to go top right of the forward wall)
-
-
-
-
+                           the dart to go top right of the forward wall)  
+  
+  
+  
 | Controls | Description |
 | --- | --- |
 | <kbd> LMB </kbd> | throws dart (HOLD) |
