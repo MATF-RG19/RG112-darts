@@ -139,6 +139,9 @@ static void on_keyboard(unsigned char key, int x, int y){ /*TODO: restrict camer
 		case 'f': case 'F':
 			inspect_animation();
 			break;
+		case 32:
+			randomize = !randomize;
+			break;
 		default: break;
 	}
 
@@ -149,14 +152,14 @@ static void on_mouse(int button, int state, int x, int y){
 		if(state == GLUT_DOWN){
 			mouse_state = state;
 			//radnomization can effect coordinates by +1, 0 or -1
-			dart_throw_pos_x = (x - window_width_half) * 91 / window_width_half  + rand() % 3 - 1;
+			dart_throw_pos_x = (x - window_width_half) * 91 / window_width_half  + randomize_dart_throw_params();
 			//don't even ask, it works just fine
-			dart_throw_pos_y = -(y - (window_height - (41.1 * window_height / 60))) * 18.9 / (window_height - (41.1 * window_height / 60)) + rand() % 3 - 1;
+			dart_throw_pos_y = -(y - (window_height - (41.1 * window_height / 60))) * 18.9 / (window_height - (41.1 * window_height / 60)) + randomize_dart_throw_params();
 			glutTimerFunc(10, dart_power, 0);
 		}
 		else if(state == GLUT_UP){
 			//adds +1, 0 -1 to darts power
-			dart_throw_power += rand() % 3 - 1;
+			dart_throw_power += randomize_dart_throw_params();
 			mouse_state = state;
 			dart_num -= 1;
 			throw_animation();

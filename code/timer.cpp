@@ -6,6 +6,8 @@
 bool inspect_active = false;
 bool throw_active = false;
 bool can_throw = true;
+bool randomize = false;
+
 
 //mouse state is used to determine if the mouse is UP or DOWN when pressed
 int mouse_state = 0;
@@ -27,6 +29,8 @@ void on_timer_throw(int value);
 void go_timer(int value);
 //used to track for how long is the LMB held
 void dart_power(int value);
+//detects if randomization is turned on and modifies dart power and flight coords based on randomize flag
+int randomize_dart_throw_params();
 
 void inspect_animation(){
 	if(!inspect_active){
@@ -210,5 +214,14 @@ void on_timer_get_back(int value){
 	
 	if(!inspect_active){
 		glutTimerFunc(15, on_timer_get_back, 0);
+	}
+}
+
+int randomize_dart_throw_params(){
+	if(randomize){
+		return rand() % 3 - 1;
+	}
+	else{
+		return 0;
 	}
 }

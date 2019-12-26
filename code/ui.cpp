@@ -10,6 +10,12 @@ void change_string_content(){
 	sprintf(time_left_text, "TIME LEFT: %.3lf", time_left);
 	sprintf(dart_power_text, "POWER: %.1lf", dart_throw_power - 2);
 	sprintf(pointer, "+");
+	if(randomize) {
+		sprintf(rand_text, "RANDOMIZATION: ON");
+	}
+	else{
+		sprintf(rand_text, "RANDOMIZATION: OFF");
+	}
 }
 
 void draw_string(double x, double y, char* string){
@@ -50,6 +56,7 @@ void draw_ui(){
 			draw_string(window_width * .548, window_height * .85, dart_power_text);
 			draw_string(window_width * .548, window_height * .90, time_left_text);
 			draw_string(window_width * .548, window_height * .95, score_text);
+			draw_string(window_width * .2, window_height * .80, rand_text);
 		}
 		glEnable(GL_LIGHTING);
 		
