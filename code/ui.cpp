@@ -56,7 +56,7 @@ void draw_ui(){
 			draw_string(window_width * .548, window_height * .85, dart_power_text);
 			draw_string(window_width * .548, window_height * .90, time_left_text);
 			draw_string(window_width * .548, window_height * .95, score_text);
-			draw_string(window_width * .2, window_height * .80, rand_text);
+			draw_string(window_width * .2, window_height * .87, rand_text);
 		}
 		glEnable(GL_LIGHTING);
 		

@@ -94,9 +94,9 @@ static void on_keyboard(unsigned char key, int x, int y){ /*TODO: restrict camer
 			break;
 		case 'r': case 'R':
 			random_colour = !random_colour;
-			if(random_colour) {
+			if(random_colour && !throw_active) {
 				for (int i = 0; i < 12; i++) {
-					colour_picker[i] = rand() % 14;
+					colour_picker[i] = rand() % 19;
 				}
 			}
 			else{
@@ -106,7 +106,7 @@ static void on_keyboard(unsigned char key, int x, int y){ /*TODO: restrict camer
 			break;
 		case 'g': case 'G':
 			pump_my_bitch_up = !pump_my_bitch_up;
-			if(pump_my_bitch_up) {
+			if(pump_my_bitch_up && !throw_active) {
 			for (int i = 0; i < 12; i++) {
 				colour_picker[i] = GOLD;
 			}

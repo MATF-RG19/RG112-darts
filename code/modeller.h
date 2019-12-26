@@ -17,6 +17,11 @@
 #define GOLD 11
 #define VIOLET 12
 #define GREY 13
+#define HOTPINK 14
+#define PINE 15
+#define DARK_BLUE 16
+#define DARK_RED 17
+#define TIGER 18
 
 //initialization of vectors for diffuse and ambient material coloring
 GLfloat ambient[] = {1, 1, 1, 1};
