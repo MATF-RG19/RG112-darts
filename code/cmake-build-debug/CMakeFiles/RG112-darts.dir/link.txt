@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/RG112-darts.dir/main.cpp.o  -o RG112-darts -lGL -lGLU -lglut 

@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/main.cpp
+iostream
+-
+GL/glut.h
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/GL/glut.h
+modeller.cpp
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/modeller.cpp
+
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/modeller.cpp
+iostream
+-
+GL/glut.h
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/GL/glut.h
+

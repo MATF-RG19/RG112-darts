@@ -1,0 +1,84 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/cameraAndLightning.cpp
+GL/glut.h
+-
+
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/image.cpp
+cassert
+-
+cstdlib
+-
+iostream
+-
+image.h
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/image.h
+GL/glut.h
+-
+
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/image.h
+
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/main.cpp
+iostream
+-
+cmath
+-
+GL/glut.h
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/GL/glut.h
+timer.cpp
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/timer.cpp
+modeller.cpp
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/modeller.cpp
+image.cpp
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/image.cpp
+cstring
+-
+string
+-
+ui.cpp
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/ui.cpp
+cmath
+-
+
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/modeller.cpp
+modeller.h
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/modeller.h
+iostream
+-
+GL/glut.h
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/GL/glut.h
+cstdlib
+-
+
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/modeller.h
+vector
+-
+
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/timer.cpp
+GL/glut.h
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/GL/glut.h
+cameraAndLightning.cpp
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/cameraAndLightning.cpp
+ui.h
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/ui.h
+
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/ui.cpp
+GL/glut.h
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/GL/glut.h
+ui.h
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/ui.h
+iostream
+-
+cstdio
+-
+GL/glut.h
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/GL/glut.h
+
+/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/ui.h
+
