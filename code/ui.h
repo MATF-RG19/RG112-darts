@@ -16,6 +16,6 @@ void draw_string(double x, double y, char* string);
 //function exists because sprintf needed a place to live :(
 void change_string_content();
 //used to track where the dart hit on the dart-board
-int score_tracker(double x, double y);
+void score_tracker(double x, double y);
 
 #endif

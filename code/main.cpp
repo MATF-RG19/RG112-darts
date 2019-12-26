@@ -156,6 +156,7 @@ static void on_mouse(int button, int state, int x, int y){
 			//don't even ask, it works just fine
 			dart_throw_pos_y = -(y - (window_height - (41.1 * window_height / 60))) * 18.9 / (window_height - (41.1 * window_height / 60)) + randomize_dart_throw_params();
 			glutTimerFunc(10, dart_power, 0);
+			score_tracker(pointer_x, pointer_y);
 		}
 		else if(state == GLUT_UP){
 			//adds +1, 0 -1 to darts power

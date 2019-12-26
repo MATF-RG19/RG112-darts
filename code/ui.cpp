@@ -43,11 +43,21 @@ void draw_ui(){
 		glColor3f(1, .35, .8);
 		
 		if(time_left <= 0.02){
-			draw_string(window_width * .497, window_height * .8, "YOU'RE TOO SLOW.. IDIOT!");
-			can_throw = false;
+			if(score) {
+				draw_string(window_width * .548, window_height * .80, score_text);
+			}
+			else {
+				draw_string(window_width * .497, window_height * .8, "YOU'RE TOO SLOW.. IDIOT!");
+				can_throw = false;
+			}
 		}
 		else if(dart_num <= 0){
-			draw_string(window_width * .527, window_height * .8, "NO MORE DARTS, MATE");
+			if(score) {
+				draw_string(window_width * .548, window_height * .80, score_text);
+			}
+			else {
+				draw_string(window_width * .527, window_height * .8, "NO MORE DARTS, MATE");
+			}
 		}
 		else{
 			change_string_content();
@@ -78,12 +88,12 @@ void draw_ui(){
 	
 }
 
-int score_tracker(double x, double y){
+void score_tracker(double x, double y){
 	//the dart-board coordinates when camera in the default position
-	if(x == -11.6 && y == -12.5){
-		return 50;
+	if(pointer_x >= 490 && pointer_x <= 510 && pointer_y >= 188 && pointer_y <= 204) {
+		score += 50;
 	}
-	else if(x > -15.1 && x < 8.5 && y > 14.5 && y < 10.5){
-		return 10;
+	else{
+		score += 0;
 	}
 }

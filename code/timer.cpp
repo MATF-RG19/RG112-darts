@@ -85,8 +85,6 @@ void on_timer_throw(int value){
 	}
 	else{
 		glutTimerFunc(20, go_timer, 0);
-		//printf("%.1lf %.1lf\n", pointer_x, pointer_y);
-		//score += score_tracker(pointer_x, pointer_y);
 		throw_active = false;
 		dart_throw_pos_y_tracker = 0;
 		dart_throw_pos_x_tracker = 0;
