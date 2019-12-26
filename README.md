@@ -3,6 +3,8 @@
 
 ## Goal of the game: ##
    - Goal of the game is to get the highest score possible which is calculated like in real life darts game
+   
+   <i> ### protip: ### </i> Aiming is windows width & height dependant
 
 
 
@@ -11,6 +13,7 @@
 | --- | --- |
 | <kbd> LMB </kbd> | throws dart (HOLD) |
 | <kbd> RMB </kbd> | resets the game |
+| <kbd> SPACE </kdb> | randomizes dart's power and aim (TOGGLE) |
 | <kbd> V </kbd> | changes the shade model |
 | <kbd> R </kbd> | randomizes the colour of the dart |
 | <kbd> G </kbd> | bad boy amongs all R's |
