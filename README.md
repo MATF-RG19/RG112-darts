@@ -4,7 +4,10 @@
 ## Goal of the game: ##
    - Goal of the game is to get the highest score possible which is calculated like in real life darts game  
      
-       
+## Installation: ##
+  - cd ~/code/cmake-build-debug/
+  - make
+  - ./code
        
    
    <i><b> protip: </b></i> Aiming is windows width & height dependant (aim at the top right of the window for
