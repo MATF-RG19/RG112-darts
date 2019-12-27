@@ -4,8 +4,8 @@
 ## Goal of the game: ##
    - Goal of the game is to get the highest score possible  
      
-     
-   <i><b> game demo: </b></i> Project Wiki -> Week 6     
+       
+       
 ## Installation: ##
   - `git clone` https://github.com/MATF-RG19/RG112-darts.git
   - `cd ~/code/cmake-build-debug/`
@@ -26,3 +26,6 @@
 | <kbd> R </kbd> | randomizes the colour of the dart |
 | <kbd> G </kbd> | bad boy amongs all R's |
 | <kbd> F </kbd> | inspects the dart (TOGGLE) |
+  
+    
+![](https://user-images.githubusercontent.com/55445149/71529458-17320f80-28e5-11ea-984b-a3b9e09a4193.gif)
