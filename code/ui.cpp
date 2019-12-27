@@ -90,7 +90,7 @@ void draw_ui(){
 
 void score_tracker(double x, double y){
 	//the dart-board coordinates when camera in the default position
-	if(pointer_x >= 450 && pointer_x <= 570 && pointer_y >= 140 && pointer_y <= 280) {
+	if(pointer_x >= .45 * window_width && pointer_x <= .565 * window_width && pointer_y >= .233 * window_height && pointer_y <= .466 * window_height) {
 		score += 50;
 	}
 	else{
