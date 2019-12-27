@@ -2,8 +2,10 @@
   - My take on popular Darts game as a project for course Computer Graphics at the Faculty of Mathematics
 
 ## Goal of the game: ##
-   - Goal of the game is to get the highest score possible which is calculated like in real life darts game  
+   - Goal of the game is to get the highest score possible  
      
+     
+   <i><b> game demo: </b></i> Project Wiki -> Week 6     
 ## Installation: ##
   - `git clone` https://github.com/MATF-RG19/RG112-darts.git
   - `cd ~/code/cmake-build-debug/`
@@ -14,8 +16,7 @@
    <i><b> protip: </b></i> Aiming is windows width & height dependant (aim at the top right of the window for
                            the dart to go top right of the forward wall)  
   
-  
-  
+    
 | Controls | Description |
 | --- | --- |
 | <kbd> LMB </kbd> | throws dart (HOLD) |
