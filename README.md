@@ -5,7 +5,7 @@
    - Goal of the game is to get the highest score possible which is calculated like in real life darts game  
      
 ## Installation: ##
-  - `download <https://github.com/MATF-RG19/RG112-darts.git>`
+  - `download` https://github.com/MATF-RG19/RG112-darts.git
   - `cd ~/code/cmake-build-debug/`
   - `make`
   - `./code`
