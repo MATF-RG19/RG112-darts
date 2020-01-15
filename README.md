@@ -24,7 +24,7 @@
 | <kbd> SPACE </kdb> | randomizes dart's power and aim (TOGGLE) |
 | <kbd> V </kbd> | changes the shade model |
 | <kbd> R </kbd> | randomizes the colour of the dart |
-| <kbd> G </kbd> | bad boy amongs all R's |
+| <kbd> G </kbd> | bad boy amongst all R's |
 | <kbd> F </kbd> | inspects the dart (TOGGLE) |
   
     
