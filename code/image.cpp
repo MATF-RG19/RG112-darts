@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <iostream>
 #include "image.h"
-#include <GL/glut.h>
+
 
 
 Image *image_init(int width, int height) {

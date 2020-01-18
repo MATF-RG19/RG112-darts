@@ -1,19 +1,20 @@
 #ifndef _IMAGE_H_
 #define _IMAGE_H_
+#include <GL/gl.h>
 /*
  * Dve strukture koje opisuju strukturu dva zaglavlja
  * kojima pocinje svaka slika u bmp formatu.
  */
 
-#define FLOOR "/home/dimitrije/Desktop/Računarska grafika/RG112-darts/textures/ceil1.bmp"
-#define CEILING "/home/dimitrije/Desktop/Računarska grafika/RG112-darts/textures/ceil2.bmp"
-#define LEFT_WALL "/home/dimitrije/Desktop/Računarska grafika/RG112-darts/textures/lw4.bmp"
-#define RIGHT_WALL "/home/dimitrije/Desktop/Računarska grafika/RG112-darts/textures/lw4.bmp"
-#define FRONT "/home/dimitrije/Desktop/Računarska grafika/RG112-darts/textures/lw4.bmp"
-#define BACK "/home/dimitrije/Desktop/Računarska grafika/RG112-darts/textures/lw4.bmp"
-#define DARTBOARD "/home/dimitrije/Desktop/Računarska grafika/RG112-darts/textures/dartboard.bmp"
+#define FLOOR "../../textures/ceil1.bmp"
+#define CEILING "../../textures/ceil2.bmp"
+#define LEFT_WALL "../../textures/lw4.bmp"
+#define RIGHT_WALL "../../textures/lw4.bmp"
+#define FRONT "../../textures/lw4.bmp"
+#define BACK "../../textures/lw4.bmp"
+#define DARTBOARD "../../textures/dartboard.bmp"
 
-GLuint textureNames[7];
+unsigned int textureNames[7];
 
 //enables textures
 void init_textures();
