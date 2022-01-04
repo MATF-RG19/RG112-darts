@@ -1,3 +1,0 @@
-/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/cmake-build-debug/CMakeFiles/code.dir
-/home/dimitrije/Desktop/Računarska grafika/RG112-darts/code/cmake-build-debug/CMakeFiles/edit_cache.dir

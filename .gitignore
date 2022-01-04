@@ -1,4 +1,5 @@
 # Prerequisites
+.vscode
 *.d
 
 # Compiled Object files
@@ -37,4 +38,5 @@
 # Build directories
 /buildAA
 /cmake-build-*
+build
 #

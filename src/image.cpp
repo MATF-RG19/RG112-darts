@@ -1,7 +1,6 @@
 #include <cassert>
 #include <cstdlib>
-#include <iostream>
-#include "image.h"
+#include "../include/image.h"
 
 
 
@@ -84,8 +83,8 @@ void image_read(Image *image, char *filename) {
   image->height = bih.height;
 
   /*
-   * U zavisnosti od toga koliko bitova informacija se cita po pikselu 
-   * (da li samo R, G i B komponenta ili R, G, B i A), alociramo niz 
+   * U zavisnosti od toga koliko bitova informacija se cita po pikselu
+   * (da li samo R, G i B komponenta ili R, G, B i A), alociramo niz
    * odgovarajuce duzine.
    */
   if (bih.bitcount == 24)
@@ -101,13 +100,13 @@ void image_read(Image *image, char *filename) {
   /* Ucitavaju se podaci o pikselima i smestaju u alocirani niz. */
   if (bih.bitcount == 24)
     /*
-     * Ako se po pikselu cita 24 bita = 3 bajta informacija, pretpostavljamo 
-     * da oni (ta 3 bajta) predstavljaju R, G i B komponentu boje (1 bajt po 
+     * Ako se po pikselu cita 24 bita = 3 bajta informacija, pretpostavljamo
+     * da oni (ta 3 bajta) predstavljaju R, G i B komponentu boje (1 bajt po
      * komponenti).
      */
     for (i = 0; i < bih.width * bih.height; i++) {
       /*
-       * Ovo mozda izgleda cudno, to sto se komponente boje citaju u suprotnom redosledu, 
+       * Ovo mozda izgleda cudno, to sto se komponente boje citaju u suprotnom redosledu,
        * tj. prvo plava, pa zelena, pa crvena, ali tako pise u specifikaciji bmp formata.
        */
       fread(&b, sizeof(char), 1, file);
@@ -120,8 +119,8 @@ void image_read(Image *image, char *filename) {
     }
   else if (bih.bitcount == 32)
     /*
-     * Ako se po pikselu cita 32 bita = 4 bajta informacija, pretpostavljamo 
-     * da oni (ta 4 bajta) predstavljaju R, G, B i A komponentu boje (1 bajt po 
+     * Ako se po pikselu cita 32 bita = 4 bajta informacija, pretpostavljamo
+     * da oni (ta 4 bajta) predstavljaju R, G, B i A komponentu boje (1 bajt po
      * komponenti).
      */
     for (i = 0; i < bih.width * bih.height; i++) {
@@ -141,16 +140,16 @@ void image_read(Image *image, char *filename) {
 }
 
 void init_textures(){
-	
+
 	glEnable(GL_TEXTURE_2D);
-	
+
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-	
+
 	image = image_init(0, 0);
-	
+
 	glGenTextures(7, textureNames);
-	
-	
+
+
 }
 
 void draw_textures(){
@@ -164,28 +163,28 @@ void draw_textures(){
 }
 
 void set_texture(char* path, int i){
-	
+
 	image_read(image, path);
 	glBindTexture(GL_TEXTURE_2D, textureNames[i]);
-	
+
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	
+
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image->width, image->height, 0, GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
 }
 
 void set_transparent_texture(char* path, int i){
-	
+
 	image_read(image, path);
 	glBindTexture(GL_TEXTURE_2D, textureNames[i]);
-	
+
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	
+
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image->width, image->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image->pixels);
 }
 
@@ -200,19 +199,19 @@ void draw_floor_texture(){
 		glNormal3f(0, 1, 0);
 		glTexCoord2f(0, 0);
 		glVertex3f(92, -9.9, 130);
-	
+
 		glTexCoord2f(0, 1);
 		glVertex3f(92, -9.9, -130);
-		
+
 		glTexCoord2f(1, 1);
 		glVertex3f(-92, -9.9, -130);
-		
+
 		glTexCoord2f(1, 0);
 		glVertex3f(-92, -9.9, 130);
 	glEnd();
-	
+
 	glBindTexture(GL_TEXTURE_2D, 0);
-	
+
 }
 
 void draw_left_wall_texture() {
@@ -221,19 +220,19 @@ void draw_left_wall_texture() {
 		glNormal3f(1, 0, 0);
 		glTexCoord2f(0, 0);
 		glVertex3f(-91.9, -10, 130);
-		
+
 		glTexCoord2f(1, 0);
 		glVertex3f(-91.9, -10, -130);
-		
+
 		glTexCoord2f(1, 1);
 		glVertex3f(-91.9, 50, -130);
-		
+
 		glTexCoord2f(0, 1);
 		glVertex3f(-91.9, 50, 130);
 	glEnd();
-	
+
 	glBindTexture(GL_TEXTURE_2D, 0);
-	
+
 }
 
 void draw_right_wall_texture() {
@@ -242,19 +241,19 @@ void draw_right_wall_texture() {
 		glNormal3f(-1, 0, 0);
 		glTexCoord2f(0, 0);
 		glVertex3f(91.9, -10, 129.9);
-		
+
 		glTexCoord2f(0, 1);
 		glVertex3f(91.9, -10, -129.9);
-		
+
 		glTexCoord2f(1, 1);
 		glVertex3f(91.9, 50, -129.9);
-		
+
 		glTexCoord2f(1, 0);
 		glVertex3f(91.9, 50, 129.9);
 	glEnd();
-	
+
 	glBindTexture(GL_TEXTURE_2D, 0);
-	
+
 }
 
 void draw_ceiling_texture() {
@@ -263,19 +262,19 @@ void draw_ceiling_texture() {
 		glNormal3f(0, -1, 0);
 		glTexCoord2f(0, 0);
 		glVertex3f(-92, 49.9, 130);
-		
+
 		glTexCoord2f(1, 0);
 		glVertex3f(92, 49.9, 130);
-		
+
 		glTexCoord2f(1, 1);
 		glVertex3f(92, 49.9, -130);
-		
+
 		glTexCoord2f(0, 1);
 		glVertex3f(-92, 49.9, -130);
 	glEnd();
-	
+
 	glBindTexture(GL_TEXTURE_2D, 0);
-	
+
 }
 
 void draw_front_wall_texture() {
@@ -284,19 +283,19 @@ void draw_front_wall_texture() {
 		glNormal3f(0, 0, 1);
 		glTexCoord2f(0, 0);
 		glVertex3f(92, -10, -129.9);
-		
+
 		glTexCoord2f(0, 1);
 		glVertex3f(-92, -10, -129.9);
-		
+
 		glTexCoord2f(1, 1);
 		glVertex3f(-92, 50, -129.9);
-		
+
 		glTexCoord2f(1, 0);
 		glVertex3f(92, 50, -129.9);
 	glEnd();
-	
+
 	glBindTexture(GL_TEXTURE_2D, 0);
-	
+
 }
 
 void draw_back_wall_texture() {
@@ -305,42 +304,42 @@ void draw_back_wall_texture() {
 		glNormal3f(0, 0, -1);
 		glTexCoord2f(0, 0);
 		glVertex3f(-92, -10, 129.9);
-		
+
 		glTexCoord2f(0, 1);
 		glVertex3f(92, -10, 129.9);
-		
+
 		glTexCoord2f(1, 1);
 		glVertex3f(92, 50, 129.9);
-		
+
 		glTexCoord2f(1, 0);
 		glVertex3f(-92, 50, 129.9);
 	glEnd();
-	
+
 	glBindTexture(GL_TEXTURE_2D, 0);
-	
+
 }
 
 void draw_dartboard_texture() {
-	
+
 	glEnable(GL_BLEND);
 	glBindTexture(GL_TEXTURE_2D, textureNames[6]);
 	glBegin(GL_QUADS);
 	glNormal3f(0, 0, -1);
 		glTexCoord2f(.022, 0);
 		glVertex3f(-9.3, 21.3, -126);
-		
+
 		glTexCoord2f(1.027, 0);
 		glVertex3f(9.24, 21.3, -126);
-		
+
 		glTexCoord2f(1.027, 1);
 		glVertex3f(9.24, 41, -126);
-		
+
 		glTexCoord2f(.022, 1);
 		glVertex3f(-9.3, 41, -126);
 	glEnd();
-	
+
 	glBindTexture(GL_TEXTURE_2D, 0);
-	
+
 	glDisable(GL_BLEND);
-	
+
 }

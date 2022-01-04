@@ -6,13 +6,13 @@
  * kojima pocinje svaka slika u bmp formatu.
  */
 
-#define FLOOR "../../textures/ceil1.bmp"
-#define CEILING "../../textures/ceil2.bmp"
-#define LEFT_WALL "../../textures/lw4.bmp"
-#define RIGHT_WALL "../../textures/lw4.bmp"
-#define FRONT "../../textures/lw4.bmp"
-#define BACK "../../textures/lw4.bmp"
-#define DARTBOARD "../../textures/dartboard.bmp"
+#define FLOOR "../textures/ceil1.bmp"
+#define CEILING "../textures/ceil2.bmp"
+#define LEFT_WALL "../textures/lw4.bmp"
+#define RIGHT_WALL "../textures/lw4.bmp"
+#define FRONT "../textures/lw4.bmp"
+#define BACK "../textures/lw4.bmp"
+#define DARTBOARD "../textures/dartboard.bmp"
 
 unsigned int textureNames[7];
 

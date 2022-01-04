@@ -1,14 +1,11 @@
 #include <iostream>
-#include <cmath>
 #include "GL/glut.h"
-#include "timer.cpp"
 #include "modeller.cpp"
 #include "image.cpp"
 #include <cstring>
 #include <string>
 #include "ui.cpp"
 #include <cmath>
-
 
 static void on_display();
 static void on_reshape(int width, int height);
@@ -32,7 +29,7 @@ int main(int argc, char** argv){
 static void glut_initialization(int* argc, char** argv){
 
 	glutInit(argc, argv);
-	
+
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE);
 	glutInitWindowPosition(200, 100);
 	glutInitWindowSize(1000, 600);
@@ -51,22 +48,22 @@ static void gl_initialization(){
 
 	glEnable(GL_DEPTH_TEST);
 	srand(time(NULL));
-	
+
 	//defines type of transparency
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	
+
 	//sets pixel storage method for UI
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-	
+
 	//enables MSAA
 	glEnable(GL_MULTISAMPLE);
 	//glEnable(GL_COLOR_MATERIAL); this could be used to colour objects instead of altering amb and diff light part
 	glLineWidth(1);
 
 	glClearColor(0, 0, 0, 0);
-	
+
 	init_textures();
-	
+
 	set_texture(FLOOR, 0);
 	set_texture(LEFT_WALL, 1);
 	set_texture(RIGHT_WALL, 2);
@@ -74,11 +71,11 @@ static void gl_initialization(){
 	set_texture(FRONT, 4);
 	set_texture(BACK, 5);
 	set_transparent_texture(DARTBOARD, 6);
-	
+
 	unbind_texture();
-	
+
 	initial_colour();
-	
+
 	glutMainLoop();
 
 }
@@ -166,7 +163,7 @@ static void on_mouse(int button, int state, int x, int y){
 			throw_animation();
 		}
 	}
-	
+
 	//resets the game
 	if(button == GLUT_RIGHT_BUTTON && state == GLUT_UP && !inspect_active){
 		dart_num = 3;
@@ -217,10 +214,10 @@ static void on_display(){
 	//initial position of the camera
 	set_eye(x, y, z, xVec, yVec, zVec);
 	gl_lighting();
-	
+
 	//draw_cartesian();
-	
-	
+
+
 	glPushMatrix();
 			//moves dart back to proper position determined by the dart_throw_vector_speed
 			glTranslatef(dart_throw_pos_x_tracker, 31.1 + dart_throw_pos_y_tracker, 42.7 - dart_throw_vector_speed);
@@ -232,13 +229,13 @@ static void on_display(){
 			glTranslatef(dart_throw_pos_x_tracker, dart_throw_pos_y_tracker, -dart_throw_vector_speed);
 			draw_dart();
 	glPopMatrix();
-	
+
 	//draw_planes();
-	
+
 	draw_dartboard();
-	
+
 	draw_textures();
-	
+
 	draw_ui();
 
 	glutSwapBuffers();

@@ -1,6 +1,6 @@
 #ifndef _MODELLER_H_
 #define _MODELLER_H_
-#include <vector>
+#include <GL/glu.h>
 
 //defines for colors used in gl_material_color function
 #define BLACK 0
@@ -24,17 +24,16 @@
 #define TIGER 18
 
 //initialization of vectors for diffuse and ambient material coloring
-GLfloat ambient[] = {1, 1, 1, 1};
-GLfloat diffuse[] = {1, 1, 1, 1};
+ GLfloat ambient[] = {1, 1, 1, 1};
+ GLfloat diffuse[] = {1, 1, 1, 1};
 //initializing quad for cylinder
-GLUquadric *quad = gluNewQuadric();
+ GLUquadric *quad = gluNewQuadric();
 //signals if pseudo-random colour picker for dart has been enabled
-bool random_colour = false;
+ bool random_colour = false;
 //makes dart golden
-bool pump_my_bitch_up = false;
+ bool pump_my_bitch_up = false;
 //vector used to store rand values that determine the colour of the dart
-std::vector<int> colour_picker(12);
-
+ std::vector<int> colour_picker(12);
 
 //sets the initial colour for dart
 void initial_colour();

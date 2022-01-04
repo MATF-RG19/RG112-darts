@@ -1,7 +1,5 @@
-#ifndef _MODELLER_CPP_
-#define _MODELLER_CPP_
+#include "../include/modeller.h"
 #include "modeller.h"
-#include <iostream>
 #include "GL/glut.h"
 #include <cstdlib>
 
@@ -16,7 +14,7 @@ void initial_colour(){
 }
 
 void gl_material_color(int COLOUR){
-	
+
 	switch(COLOUR){
 		case WHITE: ambient[0] = .9, ambient[1] = .9, ambient[2] = .9;
 			diffuse[0] = 1, diffuse[1] = 1, diffuse[2] = 1;
@@ -79,11 +77,11 @@ void gl_material_color(int COLOUR){
 			diffuse[0] = .7, diffuse[1] = .7, diffuse[2] = .7;
 			break;
 	}
-	
+
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, ambient);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse);
-	
-	
+
+
 }
 
 void draw_dart(){
@@ -105,7 +103,7 @@ void draw_dart_base(){
 	glRotatef(90, 0, 1, 0);
 	gluCylinder(quad, 1, 1, 4, 40, 10);
 	glPopMatrix();
-	
+
 	//right cylinder with different bases
 	glPushMatrix();
 	gl_material_color(colour_picker[4]);
@@ -113,7 +111,7 @@ void draw_dart_base(){
 	glRotatef(90, 0, 1, 0);
 	gluCylinder(quad, 1, .6, 3, 40, 40);
 	glPopMatrix();
-	
+
 	//left cylinder with different bases
 	glPushMatrix();
 	gl_material_color(colour_picker[5]);
@@ -121,7 +119,7 @@ void draw_dart_base(){
 	glRotatef(-90, 0, 1, 0);
 	gluCylinder(quad, 1, .6, 3, 40, 40);
 	glPopMatrix();
-	
+
 	//longest cylinder
 	glPushMatrix();
 	gl_material_color(colour_picker[1]);
@@ -129,7 +127,7 @@ void draw_dart_base(){
 	glRotatef(90, 0, 1, 0);
 	gluCylinder(quad, .6, .6, 5, 40, 40);
 	glPopMatrix();
-	
+
 	//before arrow cylinder
 	glPushMatrix();
 	gl_material_color(colour_picker[2]);
@@ -137,7 +135,7 @@ void draw_dart_base(){
 	glRotatef(90, 0, 1, 0);
 	gluCylinder(quad, .6, .3, 0.8, 40, 40);
 	glPopMatrix();
-	
+
 	//arrow
 	glPushMatrix();
 	gl_material_color(colour_picker[11]);
@@ -145,7 +143,7 @@ void draw_dart_base(){
 	glRotatef(90, 0, 1, 0);
 	glutSolidCone(.3, 10, 30, 0);
 	glPopMatrix();
-	
+
 	//before wings holder
 	glPushMatrix();
 	gl_material_color(colour_picker[6]);
@@ -153,7 +151,7 @@ void draw_dart_base(){
 	glRotatef(-90, 0, 1, 0);
 	gluCylinder(quad, .6, .45, 0.8, 40, 40);
 	glPopMatrix();
-	
+
 	//wings holder
 	glPushMatrix();
 	gl_material_color(colour_picker[3]);
@@ -161,12 +159,12 @@ void draw_dart_base(){
 	glRotatef(-90, 0, 1, 0);
 	gluCylinder(quad, .45, .45, 3.5, 40, 40);
 	glPopMatrix();
-	
-	
+
+
 }
 
 void draw_wing(){
-	
+
 	//shear
 	GLfloat m[16] = {
 			1.0, 0.0, 0.0, 0.0,
@@ -175,73 +173,73 @@ void draw_wing(){
 			0.0, 0.0, 0.0, 1.0
 	};
 	glMultMatrixf(m);
-	
+
 	glBegin(GL_POLYGON);
 	glVertex3f(0, 0, 0);
 	glVertex3f(3.5, 0, 0);
 	glVertex3f(3.5, 0, .1);
 	glVertex3f(0, 0, .1);
 	glEnd();
-	
+
 	glBegin(GL_POLYGON);
 	glVertex3f(0, 0, 0);
 	glVertex3f(0, 3.5, 0);
 	glVertex3f(0, 3.5, .1);
 	glVertex3f(0, 0, .1);
 	glEnd();
-	
+
 	glBegin(GL_POLYGON);
 	glVertex3f(0, 0, 0);
 	glVertex3f(3.5, 0, 0);
 	glVertex3f(3.5, 3.5, 0);
 	glVertex3f(0, 3.5, 0);
 	glEnd();
-	
+
 	glBegin(GL_POLYGON);
 	glVertex3f(3.5, 0, 0);
 	glVertex3f(3.5, 0, .1);
 	glVertex3f(3.5, 3.5, 0);
 	glVertex3f(3.5, 3.5, .1);
 	glEnd();
-	
+
 	glBegin(GL_POLYGON);
 	glVertex3f(3.5, 0, .1);
 	glVertex3f(0, 0, .1);
 	glVertex3f(0, 3.5, .1);
 	glVertex3f(3.5, 3.5, .1);
 	glEnd();
-	
+
 	glBegin(GL_POLYGON);
 	glVertex3f(0, 3.5, 0);
 	glVertex3f(3.5, 3.5, 0);
 	glVertex3f(3.5, 3.5, .1);
 	glVertex3f(0, 3.5, .1);
 	glEnd();
-	
+
 }
 
 void draw_wings(){
-	
+
 	glPushMatrix();
 	glTranslatef(-11.4, 0, 0);
 	gl_material_color(colour_picker[7]);
 	draw_wing();
 	glPopMatrix();
-	
+
 	glPushMatrix();
 	glRotatef(90, 1, 0, 0);
 	glTranslatef(-11.4, 0, 0);
 	gl_material_color(colour_picker[8]);
 	draw_wing();
 	glPopMatrix();
-	
+
 	glPushMatrix();
 	glRotatef(180, 1, 0, 0);
 	glTranslatef(-11.4, 0, 0);
 	gl_material_color(colour_picker[9]);
 	draw_wing();
 	glPopMatrix();
-	
+
 	glPushMatrix();
 	glRotatef(-90, 1, 0, 0);
 	glTranslatef(-11.4, 0, 0);
@@ -251,35 +249,35 @@ void draw_wings(){
 }
 
 void draw_cartesian(){
-	
+
 	glDisable(GL_LIGHTING);
-	
+
 	glColor3f(1, 0, 0);
 	glBegin(GL_LINES);
 	glVertex3f(0, 0, 0);
 	glVertex3f(100, 0, 0);
 	glEnd();
-	
+
 	glColor3f(0, 1, 0);
 	glBegin(GL_LINES);
 	glVertex3f(0, 0, 0);
 	glVertex3f(0, 100, 0);
 	glEnd();
-	
+
 	glColor3f(0, 0, 1);
 	glBegin(GL_LINES);
 	glVertex3f(0, 0, 0);
 	glVertex3f(0, 0, 100);
 	glEnd();
-	
+
 	glEnable(GL_LIGHTING);
-	
+
 }
 
 void draw_planes(){
-	
+
 	glDisable(GL_LIGHTING);
-	
+
 	//down
 	glPushMatrix();
 	glColor3f(0, .5, .1);
@@ -290,7 +288,7 @@ void draw_planes(){
 	glVertex3f(-92, -10, 130);
 	glEnd();
 	glPopMatrix();
-	
+
 	//right
 	glPushMatrix();
 	glColor3f(.5, .5, 0);
@@ -301,7 +299,7 @@ void draw_planes(){
 	glVertex3f(92, 50, 130);
 	glEnd();
 	glPopMatrix();
-	
+
 	//front
 	glPushMatrix();
 	glColor3f(.5, .1, 0);
@@ -312,7 +310,7 @@ void draw_planes(){
 	glVertex3f(92, 50, -130);
 	glEnd();
 	glPopMatrix();
-	
+
 	//left
 	glPushMatrix();
 	glColor3f(.5, .5, 0);
@@ -323,7 +321,7 @@ void draw_planes(){
 	glVertex3f(-92, 50, -130);
 	glEnd();
 	glPopMatrix();
-	
+
 	//back
 	glPushMatrix();
 	glColor3f(.5, .1, 0);
@@ -334,7 +332,7 @@ void draw_planes(){
 	glVertex3f(-92, 50, 130);
 	glEnd();
 	glPopMatrix();
-	
+
 	//up
 	glPushMatrix();
 	glColor3f(0, .5, .1);
@@ -345,9 +343,9 @@ void draw_planes(){
 	glVertex3f(-92, 50, 130);
 	glEnd();
 	glPopMatrix();
-	
+
 	glEnable(GL_LIGHTING);
-	
+
 }
 
 void draw_dartboard(){
@@ -361,7 +359,7 @@ void draw_dartboard(){
 }
 
 void draw_dartboard_base(){
-	
+
 	glPushMatrix();
 	//lowest cuboid
 	glPushMatrix();
@@ -369,7 +367,7 @@ void draw_dartboard_base(){
 	gl_material_color(GREY);
 	glutSolidCube(10);
 	glPopMatrix();
-	
+
 	//lower pyramid
 	glPushMatrix();
 	gl_material_color(GREY);
@@ -379,21 +377,21 @@ void draw_dartboard_base(){
 	glVertex3f(3, 6, 1);
 	glVertex3f(-3, 6, 1);
 	glEnd();
-	
+
 	glBegin(GL_POLYGON);
 	glVertex3f(5, 3, 2);
 	glVertex3f(5, 3, -2);
 	glVertex3f(3, 6, -1);
 	glVertex3f(3, 6, 1);
 	glEnd();
-	
+
 	glBegin(GL_POLYGON);
 	glVertex3f(5, 3, -2);
 	glVertex3f(-5, 3, -2);
 	glVertex3f(-3, 6, -1);
 	glVertex3f(3, 6, -1);
 	glEnd();
-	
+
 	glBegin(GL_POLYGON);
 	glVertex3f(-5, 3, -2);
 	glVertex3f(-5, 3, 2);
@@ -401,86 +399,85 @@ void draw_dartboard_base(){
 	glVertex3f(-3, 6, -1);
 	glEnd();
 	glPopMatrix();
-	
+
 	//middle cylinder
 	glPushMatrix();
 	gl_material_color(WHITE);
-	
+
 	glBegin(GL_POLYGON);
 	glVertex3f(3, 6, 1);
 	glVertex3f(3, 6, -1);
 	glVertex3f(3, 21, -1);
 	glVertex3f(3, 21, 1);
 	glEnd();
-	
+
 	glBegin(GL_POLYGON);
 	glVertex3f(3, 6, -1);
 	glVertex3f(-3, 6, -1);
 	glVertex3f(-3, 21, -1);
 	glVertex3f(3, 21, -1);
 	glEnd();
-	
+
 	glBegin(GL_POLYGON);
 	glVertex3f(-3, 6, -1);
 	glVertex3f(-3, 6, 1);
 	glVertex3f(-3, 21, 1);
 	glVertex3f(-3, 21, -1);
 	glEnd();
-	
+
 	glBegin(GL_POLYGON);
 	glVertex3f(-3, 6, 1);
 	glVertex3f(3, 6, 1);
 	glVertex3f(3, 21, 1);
 	glVertex3f(-3, 21, 1);
 	glEnd();
-	
+
 	glPopMatrix();
-	
+
 	//upper pyramid
 	glPushMatrix();
 	gl_material_color(GREY);
-	
+
 	glBegin(GL_POLYGON);
 	glVertex3f(3, 21, 1);
 	glVertex3f(3, 21, -1);
 	glVertex3f(1.8, 23.5, -.7);
 	glVertex3f(1.8, 23.5, .7);
 	glEnd();
-	
+
 	glBegin(GL_POLYGON);
 	glVertex3f(3, 21, -1);
 	glVertex3f(-3, 21, -1);
 	glVertex3f(-1.8, 23.5, -.7);
 	glVertex3f(1.8, 23.5, -.7);
 	glEnd();
-	
+
 	glBegin(GL_POLYGON);
 	glVertex3f(-3, 21, -1);
 	glVertex3f(3, 21, 1);
 	glVertex3f(1.8, 23.5, .7);
 	glVertex3f(-1.8, 23.5, -.7);
 	glEnd();
-	
+
 	glBegin(GL_POLYGON);
 	glVertex3f(-3, 21, 1);
 	glVertex3f(3, 21, 1);
 	glVertex3f(1.8, 23.5, .7);
 	glVertex3f(-1.8, 23.5, .7);
 	glEnd();
-	
+
 	glPopMatrix();
-	
+
 	glPopMatrix();
 }
 
 void draw_dartboard_main(){
-	
+
 	glPushMatrix();
 	glTranslated(0, 29.8, .4);
 	gl_material_color(BLACK);
-	
+
 	gluDisk(quad, 0, 6.4, 20, 7);
 	glPopMatrix();
 
 }
-#endif

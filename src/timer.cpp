@@ -1,6 +1,6 @@
 #include "GL/glut.h"
 #include "cameraAndLightning.cpp"
-#include "ui.h"
+#include "../include/ui.h"
 
 
 bool inspect_active = false;
@@ -54,7 +54,7 @@ void on_timer_throw(int value){
 	if(value){
 		return;
 	}
-	
+
 	if(dart_throw_vector_speed <= 158){
 		can_throw = false;
 		dart_throw_vector_speed += dart_throw_power;
@@ -68,7 +68,7 @@ void on_timer_throw(int value){
 				dart_throw_pos_x_tracker += dart_throw_pos_x * dart_throw_power / 158.0;
 			}
 		}
-		
+
 		if(dart_throw_pos_y < 0){
 			if(dart_throw_pos_y_tracker > dart_throw_pos_y){
 				dart_throw_pos_y_tracker += dart_throw_pos_y * dart_throw_power / 158.0;
@@ -79,7 +79,7 @@ void on_timer_throw(int value){
 				dart_throw_pos_y_tracker += dart_throw_pos_y * dart_throw_power / 158.0;
 			}
 		}
-		
+
 		//the expression on the right is there to modify the rotation a bit depending on the dart_throw_power
 		dart_throw_rotation_angle += 18 + (dart_throw_power - 4)*2;
 	}
@@ -93,21 +93,21 @@ void on_timer_throw(int value){
 		dart_throw_rotation_angle = 0;
 		can_throw = true;
 	}
-	
+
 	if(!throw_active){
 		can_throw = true;
 	}
-	
+
 	if(time_left > 0.02) {
 		time_left -= .02;
 	}
 	else{
 		can_throw = false;
 	}
-	
+
 	glutPostRedisplay();
-	
-	
+
+
 	if(throw_active){
 		glutTimerFunc(20, on_timer_throw, 0);
 	}
@@ -117,11 +117,11 @@ void go_timer(int value){
 	if(value){
 		return;
 	}
-	
+
 	time_left -= .02;
-	
+
 	glutPostRedisplay();
-	
+
 	if(!throw_active){
 		glutTimerFunc(20, go_timer, 0);
 	}
@@ -131,13 +131,13 @@ void dart_power(int value){
 	if(value){
 		return;
 	}
-	
+
 	if(dart_throw_power < 6.9) {
 		dart_throw_power += 0.1;
 	}
-	
+
 	glutPostRedisplay();
-	
+
 	if(mouse_state == GLUT_DOWN){
 		glutTimerFunc(10, dart_power, 0);
 	}
@@ -147,15 +147,15 @@ void on_timer_inspect(int value){
 	if(value){
 		return;
 	}
-	
+
 	if(x > 14){
 		x--;
 	}
-	
+
 	if(y > 30){
 		y--;
 	}
-	
+
 	if(z > 43){
 		z--;
 	}
@@ -163,35 +163,35 @@ void on_timer_inspect(int value){
 	if(z < 43){
 		z++;
 	}
-	
+
 	if(zVec < 0){
 		zVec += 0.01;
 	}
 	if(xVec > -1) {
 		xVec -= 0.01;
 	}
-		
+
 	glutPostRedisplay();
-	
+
 	if(inspect_active){
 		glutTimerFunc(15, on_timer_inspect, 0);
 	}
-	
+
 }
 
 void on_timer_get_back(int value){
 	if(value){
 		return;
 	}
-	
+
 	if(x < 24){
 		x++;
 	}
-	
+
 	if(y < 35){
 		y++;
 	}
-	
+
 	if(z < 84){
 		z++;
 	}
@@ -199,17 +199,17 @@ void on_timer_get_back(int value){
 	if(z > 84){
 		z--;
 	}
-	
+
 	if(zVec > -1){
 		zVec -= 0.01;
 	}
-	
+
 	if(xVec < 0){
 		xVec += 0.01;
 	}
-	
+
 	glutPostRedisplay();
-	
+
 	if(!inspect_active){
 		glutTimerFunc(15, on_timer_get_back, 0);
 	}
