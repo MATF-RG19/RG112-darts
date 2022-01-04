@@ -8,9 +8,11 @@
        
 ## Installation: ##
   - `git clone` https://github.com/MATF-RG19/RG112-darts.git
-  - `cd ~/RG112-darts/code/cmake-build-debug/`
+  - `cd RG112-darts`
+  - `mkdir build && cd build`
+  - `cmake ..`
   - `make`
-  - `./code`
+  - `./darts`
        
    
    <i><b> protip: </b></i> Aiming is windows width & height dependant (aim at the top right of the window for
