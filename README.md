@@ -7,7 +7,7 @@
        
        
 ## Installation: ##
-  - `git clone` https://github.com/MATF-RG19/RG112-darts.git
+  - `git clone https://github.com/MATF-RG19/RG112-darts.git`
   - `cd RG112-darts`
   - `mkdir build && cd build`
   - `cmake ..`
